@@ -1,1 +1,1 @@
-drawio.xml can be opened in https://app.diagrams.net/
+drawio.xml can be opened and modified in https://app.diagrams.net/
