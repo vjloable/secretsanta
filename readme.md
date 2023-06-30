@@ -1,4 +1,4 @@
-# Application Description
+# SecretSanta
 
 A web-based application that facilitates a fair randomization of gift-givers or "santa" in the exchanging of gifts among a group of users.
 
