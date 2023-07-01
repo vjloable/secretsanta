@@ -3,6 +3,7 @@
 <head>
   <title>Welcome😎</title>
   <style>
+
     .button-container {
       display: flex;
       justify-content: center;
@@ -23,6 +24,7 @@
       cursor: pointer;
       font-family: Arial, sans-serif;
     }
+
     .button .child{
         background-color: inherit;
         color: inherit;
@@ -36,17 +38,16 @@
       font-size: 14px;
       margin-top: 5px;
     }
+
   </style>
 </head>
 <body>
   <h1 style="text-align: center; height: 100px; top: 100px; font-family: Arial, sans-serif;">Hello! 😁😁😁</h1>
   <div class="button-container">
-    <div class="button">
-      <button class="child">Sign Up</button>
-    </div>
-    <div class="button">
-      <button class="child" >Login</button>
-    </div>
+    <form method="post">
+      <input type="submit" name="button1" value="SignUp" formaction="/secretsanta/signup.php"/>
+      <input type="submit" name="button2" value="Login" formaction="/secretsanta/login.php"/>
+    </form>
   </div>
 </body>
 </html>
