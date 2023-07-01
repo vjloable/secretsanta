@@ -66,14 +66,11 @@
   <div class="signup-form">
     <h2>Signup Form</h2>
     <div class="vertical-bar"></div>
-    <form>
+    <form method="post" action="/secretsanta/scripts/signup_action.php">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required><br><br>
-      
       <label for="name">Name:</label>
-      <input type="text" required><br><br>
-
-
+      <input type="text" name="name" required><br><br>
       <input type="submit" value="Sign Up">
     </form>
   </div>
