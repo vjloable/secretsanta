@@ -17,7 +17,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/secretsanta/welcome.php">Home</a>
                     </div>
                 </div>
             </div>
@@ -30,12 +30,19 @@
                         <h2 class="card-title text-center">Login Form</h2>
                     </div>
                     <div class="col-md-8">
-                        <form>
+                        <p class="text-danger text-center"> 
+                        <?php
+                        if (isset($_GET['error_msg'])) {
+                            echo "*".urldecode($_GET['error_msg']);
+                        }
+                        ?>
+                        </p>
+                        <form method="post">
                             <div class="form-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw pr-2"></i></span><label for="email">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
-                            <button type="submit" class="btn btn-success btn-block">Confirms</button>
+                            <input type="submit" class="btn btn-success btn-block" formaction="/secretsanta/scripts/login_action.php"/>
                         </form>
                     </div>
                 </div>

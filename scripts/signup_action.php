@@ -20,7 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $ret = $db->query($sql_user_email_exists);
   if ($ret->fetchArray(SQLITE3_ASSOC)) {
     $db->close();
-    header("Location: /secretsanta/signup.php");
+
+    $error_msg = "E-mail is already taken";
+    header("Location: /secretsanta/signup.php"."/?error_msg=". $error_msg);
     exit();
   }
 
@@ -52,6 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: /secretsanta/signup.php");
     exit();
   } else {
+    session_start();
+    $_SESSION['email'] = $email;
+    $_SESSION['name'] = $name;
     header("Location: /secretsanta/lobby.php");
   }
 }
