@@ -21,8 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $db->close();
         session_start();
         $_SESSION['email'] = $email;
-        echo $extracted;
-        print_r($extracted);
         $_SESSION['name'] = $extracted['name'];
         header("Location: /secretsanta/lobby.php");
         exit();
