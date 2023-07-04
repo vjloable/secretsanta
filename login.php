@@ -30,10 +30,10 @@
                         <h2 class="card-title text-center">Login Form</h2>
                     </div>
                     <div class="col-md-8">
-                        <p class="text-danger text-center">* 
+                        <p class="text-danger text-center"> 
                         <?php
                         if (isset($_GET['error_msg'])) {
-                            echo urldecode($_GET['error_msg']);
+                            echo "*".urldecode($_GET['error_msg']);
                         }
                         ?>
                         </p>
