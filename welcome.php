@@ -15,7 +15,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/secretsanta/welcome.php">Home</a>
                     </div>
                 </div>
             </div>
@@ -25,9 +25,9 @@
             <div class="p-2 bd-highlight" style="margin-top: 5%;"></div>
             <div class="p-2 bd-highlight w-100" style="flex-grow: 1;">
                 <div class="btn-group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
-                    <a class="btn btn-success" style="padding: 5% 5%"href="#" role="button">Sign up</a>
+                    <a class="btn btn-success" style="padding: 5% 5%" href="/secretsanta/signup.php" role="button">Sign up</a>
                     <a style="padding-left: 15%;"></a>
-                    <a class="btn btn-success" style="padding: 5% 5%" href="#" role="button">Login</a>
+                    <a class="btn btn-success" style="padding: 5% 5%" href="/secretsanta/login.php" role="button">Login</a>
                 </div>
             </div>
             <div class="p-2 bd-highlight" ></div>

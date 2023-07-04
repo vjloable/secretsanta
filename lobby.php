@@ -14,16 +14,26 @@
                 <span class="navbar-toggler-icon"></span>
                 <div class="collapse navbar-collapse" id="navbarID">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>  
+                        <a class="nav-link active" aria-current="page" href="/secretsanta/welcome.php">Home</a>  
                     </div>
                 </div>
             </div>
         </nav>
-        <h1 class="text-center pt-3">Welcome _____!</h1>
+        <h1 class="text-center pt-3">Welcome, 
+            <?php 
+            session_start();
+            echo $_SESSION['name']; 
+            ?>!
+        </h1>
+        <h5 class="text-center pt-1">Signed in as:
+            <?php
+            echo $_SESSION['email'];
+            ?>
+        </h5>
         <div class="d-flex flex-column align-items-baseline bd-highlight mb-3" style="min-height: 50vh;">
             <div class="p-2 bd-highlight" style="margin-top: 5%;"></div>
             <div class="p-2 bd-highlight w-100" style="flex-grow: 1;">
-                <div class="btn-group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
+                <div class="btn-;group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
                     <a class="btn btn-success" style="padding: 5% 5%"href="#" role="button">Join
                         <div style="font-size: 14px;">Friends in a room already? <br> Come join!</div>
                     </a>
