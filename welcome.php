@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome😎</title>        
+        <title>Welcome😎</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarID">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/secretsanta/welcome.php">Home</a>
                     </div>
                 </div>
             </div>
@@ -25,9 +25,9 @@
             <div class="p-2 bd-highlight" style="margin-top: 5%;"></div>
             <div class="p-2 bd-highlight w-100" style="flex-grow: 1;">
                 <div class="btn-group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
-                    <a class="btn btn-success" style="padding: 5% 5%"href="#" role="button">Sign up</a>
+                    <a class="btn btn-success" style="padding: 5% 5%" href="/secretsanta/signup.php" role="button">Sign up</a>
                     <a style="padding-left: 15%;"></a>
-                    <a class="btn btn-success" style="padding: 5% 5%" href="#" role="button">Login</a>
+                    <a class="btn btn-success" style="padding: 5% 5%" href="/secretsanta/login.php" role="button">Login</a>
                 </div>
             </div>
             <div class="p-2 bd-highlight" ></div>

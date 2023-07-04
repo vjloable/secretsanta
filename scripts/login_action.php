@@ -11,20 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new MyDB();
 
     $email = $_POST["email"];
-
     $sql_user_email_exists = <<<EOF
     SELECT * FROM user WHERE email="$email";
     EOF;
 
     $ret = $db->query($sql_user_email_exists);
     
-    if ($ret->fetchArray(SQLITE3_ASSOC)) {
+    if ($extracted = $ret->fetchArray(SQLITE3_ASSOC)) {
         $db->close();
+        session_start();
+        $_SESSION['email'] = $email;
+        echo $extracted;
+        print_r($extracted);
+        $_SESSION['name'] = $extracted['name'];
         header("Location: /secretsanta/lobby.php");
         exit();
     } else {
         $db->close();
-        header("Location: /secretsanta/login.php");
+        $error_msg = "E-mail does not exist. Register this e-mail first.";
+        header("Location: /secretsanta/login.php"."/?error_msg=".$error_msg);
         exit();
     }
 }
