@@ -4,7 +4,7 @@
 		<title>Welcome😎</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
+		<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
 			<div class="container-fluid">
 				<a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,6 @@
 				</button>
 			</div>
 		</nav>
-		
 		<div class="d-flex" style="height: 93vh; background-color: rgb(255, 100, 100);">
 			<div class="p-2 flex-fill"></div>
 			<div class="p-2 col-3 flex-fill align-self-center">
