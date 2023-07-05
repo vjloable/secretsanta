@@ -1,3 +1,6 @@
+<?php
+    include "scripts\session_control.inc";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +24,6 @@
         </nav>
         <h1 class="text-center pt-3">Welcome, 
             <?php 
-            session_start();
             echo $_SESSION['name']; 
             ?>!
         </h1>
@@ -33,15 +35,14 @@
         <div class="d-flex flex-column align-items-baseline bd-highlight mb-3" style="min-height: 50vh;">
             <div class="p-2 bd-highlight" style="margin-top: 5%;"></div>
             <div class="p-2 bd-highlight w-100" style="flex-grow: 1;">
-                <div class="btn-;group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
-                    <a class="btn btn-success" style="padding: 5% 5%"href="#" role="button">Join
+                <form action="post">
+                    <div class="btn-;group-lg btn-group-justified text-center h-50" role="group" aria-label="Basic example">
                         <div style="font-size: 14px;">Friends in a room already? <br> Come join!</div>
-                    </a>
-                    <a style="padding-left: 15%;"></a>
-                    <a class="btn btn-success" style="padding: 5% 5%" href="#" role="button">Host
+                        <input class="btn btn-success" role="button" name="join" value="Join"/>
                         <div style="font-size: 14px;">Looking to host a party? 👀 <br> Host a room now!</div>
-                    </a>
-                </div>
+                        <input class="btn btn-success" role="button" name="host" value="Host"/>
+                    </div>
+                </form>
             </div>
             <div class="p-2 bd-highlight" ></div>
         </div>
