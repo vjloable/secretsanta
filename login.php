@@ -33,13 +33,13 @@
                     <div>
                         <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Login Form</h2>
                     </div>
-                    <div>
-                        <p class="text-danger text-center">
-                            <?php
-                            if (isset($_GET['error_msg'])) {
-                                echo "*" . urldecode($_GET['error_msg']);
-                            }
-                            ?>
+                    <div class="col-md-8">
+                        <p class="text-danger text-center"> 
+                        <?php
+                        if (isset($_GET['error_msg'])) {
+                            echo "*".urldecode($_GET['error_msg']);
+                        }
+                        ?>
                         </p>
                         <form method="post">
                             <div class="form-group">

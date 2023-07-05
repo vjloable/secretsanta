@@ -54,6 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: /secretsanta/signup.php");
     exit();
   } else {
+    session_start();
+    $_SESSION['email'] = $email;
+    $_SESSION['name'] = $name;
     header("Location: /secretsanta/lobby.php");
   }
 }
