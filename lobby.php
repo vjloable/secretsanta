@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Lobby🔥</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -12,7 +11,6 @@
         }
     </style>
 </head>
-
 <body style="height: 100%; background-color: rgb(255, 100, 100); color: white; font-weight: 900;">
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
@@ -35,20 +33,22 @@
             ?>
         </h5>
         <br>
-        <div class="d-flex" style="height:40%; margin-right: 0px; margin-left: 0px;">
-            <div class="col p-2 text-right h-100 " style="margin-right: 2%">
-                <button class="btn btn-outline-light h-100 glow " style="padding: 10% 10%; font-size: 40px; font-weight:900;" href="#" role="button">Join
-                    <br>
-                    <div style="font-size: 11px;">Friends in a room already? </div>
-                </button>
+        <form action="post">
+            <div class="d-flex" style="height:40%; margin-right: 0px; margin-left: 0px;">
+                <div class="col p-2 text-right h-100 " style="margin-right: 2%">
+                    <button class="btn btn-outline-light h-100 glow " style="padding: 10% 10%; font-size: 40px; font-weight:900;" role="button">Join
+                        <br>
+                        <div style="font-size: 11px;">Friends in a room already? </div>
+                    </button>
+                </div>
+                <div class="col p-2 text-left h-100 " style="margin-left: 2%">
+                    <button class="btn btn-outline-light h-100 glow " style="padding: 10% 10%; font-size: 40px; font-weight:900;" type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
+                        <br>
+                        <div style="font-size: 11px;">Looking to host a party? 👀 </div>
+                    </button>
+                </div>
             </div>
-            <div class="col p-2 text-left h-100 " style="margin-left: 2%">
-                <button class="btn btn-outline-light h-100 glow " style="padding: 10% 10%; font-size: 40px; font-weight:900;" href="#" role="button">Host
-                    <br>
-                    <div style="font-size: 11px;">Looking to host a party? 👀 </div>
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 
 </body>
