@@ -2,6 +2,11 @@
 <html>
 	<head>
 		<title>Welcome😎</title>
+		<style>
+        .glow {
+            box-shadow: 0 0 20px #994747;
+        }
+    	</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
@@ -12,11 +17,10 @@
 				</button>
 			</div>
 		</nav>
-		
 		<div class="d-flex" style="height: 93vh; background-color: rgb(255, 100, 100);">
 			<div class="p-2 flex-fill"></div>
-			<div class="p-2 col-3 flex-fill align-self-center">
-				<div class="mb-5">
+			<div class="p-2 col-3 flex-fill align-self-center mb-5" style="width: 33%">
+				<div class="mb-4">
 					<h1 class="jumbotron-heading" style="font-size: 90px; font-weight: 900; text-align: center; color: rgb(255, 255, 255);">Secret Santa</h1>
 					<p class="lead text-center" style="color: rgb(255, 255, 255);">
 						A web-based application that facilitates a fair randomization of gift-givers or “santa” in the exchanging of gifts among a group of users.
@@ -24,8 +28,10 @@
 				</div>
 				<div class="container-fluid justify-content-center">
 					<div class="btn-group-lg btn-group-justified text-center">
-						<a class="btn btn-light text-danger btn-sm mr-3 py-2" style="width: 160px;"href="/secretsanta/login.php" role="button">LOGIN</a>
-						<a class="btn btn-outline-light btn-sm py-2" style="width: 160px;" href="/secretsanta/signup.php" role="button">SIGN-UP</a>
+						<form action="post">
+							<button type="submit" class="btn btn-outline-light btn-sm mr-3 py-2" style="width: 160px; font-weight:900;" formaction="/secretsanta/login.php">LOGIN</button>
+							<button type="submit" class="btn btn-outline-light btn-sm py-2 " style="width: 160px; font-weight:900;" formaction="/secretsanta/signup.php">SIGN-UP</button>
+						</form>
 					</div>
 				</div>
 			</div>
