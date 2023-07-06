@@ -13,10 +13,10 @@ $name = $_SESSION['name'];
 $room_code = $_SESSION['hosting_room'];
 
 $sql_get_room_members = <<<EOF
-SELECT * FROM belongs_in JOIN user
+SELECT name FROM belongs_in JOIN user
 ON user.id = belongs_in.user_id
 WHERE room_code = $room_code
 EOF;
-$members = ($db->query($sql_get_room_members))->fetchArray();
+$members = ($db->query($sql_get_room_members))->fetchArray(SQLITE3_ASSOC);
 $db->close();
 ?>
