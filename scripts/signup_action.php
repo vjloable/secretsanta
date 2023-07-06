@@ -1,11 +1,5 @@
 <?php
-class MyDB extends SQLite3
-{
-  function __construct()
-  {
-    $this->open('../secret_santa.db');
-  }
-}
+include "database_client.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $db = new MyDB();
@@ -54,6 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: /secretsanta/signup.php");
     exit();
   } else {
+    session_start();
+    $_SESSION['email'] = $email;
+    $_SESSION['name'] = $name;
     header("Location: /secretsanta/lobby.php");
   }
 }

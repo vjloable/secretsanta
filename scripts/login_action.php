@@ -1,11 +1,5 @@
 <?php
-class MyDB extends SQLite3
-{
-    function __construct()
-    {
-        $this->open('../secret_santa.db');
-    }
-}
+include "database_client.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new MyDB();
@@ -21,14 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $db->close();
         session_start();
         $_SESSION['email'] = $email;
-        echo $extracted;
-        print_r($extracted);
         $_SESSION['name'] = $extracted['name'];
         header("Location: /secretsanta/lobby.php");
         exit();
     } else {
         $db->close();
-        $error_msg = "E-mail does not exist. Register this e-mail first.";
+        $error_msg = "E-mail does not exist.";
         header("Location: /secretsanta/login.php"."/?error_msg=".$error_msg);
         exit();
     }
