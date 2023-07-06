@@ -30,24 +30,25 @@
         <div class="container" style="min-height: 70%;display: flex;align-items: center;">
             <div class="card mx-auto glow" style="max-width: 600px; padding: 20px;">
                 <div class="row">
+                    <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Login Form</h2>
                     <div>
-                        <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Login Form</h2>
-                    </div>
-                    <div class="col-md-8">
-                        <p class="text-danger text-center"> 
-                        <?php
-                        if (isset($_GET['error_msg'])) {
-                            echo "*".urldecode($_GET['error_msg']);
-                        }
-                        ?>
+                        <p class="text-danger text-center text-wrap">
+                            <?php
+                            if (isset($_GET['error_msg'])) {
+                                echo "* ".urldecode($_GET['error_msg']).".";
+                            }
+                            ?>
                         </p>
                         <form method="post">
                             <div class="form-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw pr-2"></i></span><label for="email" style="font-weight: 900; color: #484747;">Email:</label>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope-o fa-fw pr-2"></i>
+                                </span>
+                                <label for="email" style="font-weight: 900; color: #484747;">Email:</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <br>
-                            <input type="submit" class="btn btn-success btn-block" formaction="/secretsanta/scripts/login_action.php" />
+                            <button type="submit" class="btn btn-success btn-block" formaction="/secretsanta/scripts/login_action.php">Confirm</button>
                         </form>
                     </div>
                 </div>

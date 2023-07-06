@@ -1,11 +1,5 @@
 <?php
-class MyDB extends SQLite3
-{
-  function __construct()
-  {
-    $this->open('../secret_santa.db');
-  }
-}
+include "database_client.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $db = new MyDB();

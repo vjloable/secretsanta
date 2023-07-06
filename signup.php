@@ -37,7 +37,7 @@
             <p class="text-danger text-center">
               <?php
               if (isset($_GET['error_msg'])) {
-                echo urldecode($_GET['error_msg']);
+                echo "* ".urldecode($_GET['error_msg']).".";
               }
               ?>
             </p>
