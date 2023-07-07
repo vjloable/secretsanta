@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         .table-wrapper-scroll-y {
@@ -27,9 +26,6 @@
             background-color: transparent;
             border-radius: 0;
             border: 1px solid #ce2423;
-            /* border-left: none;
-            border-right: none;
-            border-top: none; */
         }
 
         .table-wrapper-scroll-y thead th {
@@ -59,7 +55,79 @@
             box-shadow: 0 0 5px #484747;
             border-radius: 5%;
         }
+
+        .tooltip-text {
+            visibility: hidden;
+            position: absolute;
+            z-index: 2;
+            width: 150px;
+            color: white;
+            font-size: 12px;
+            background-color: #192733;
+            border-radius: 10px;
+            padding: 10px 15px 10px 15px;
+        }
+
+        .tooltip-text::before {
+            content: "";
+            position: absolute;
+            transform: rotate(45deg);
+            background-color: #192733;
+            padding: 5px;
+            z-index: 1;
+        }
+
+        .hover-text:hover .tooltip-text {
+            visibility: visible;
+        }
+
+        #right {
+            top: -8px;
+            left: 120%;
+        }
+
+        #right::before {
+            top: 28%;
+            left: -2%;
+        }
+
+        .hover-text {
+            position: relative;
+            display: inline-block;
+            font-family: Arial;
+            text-align: center;
+            margin-left: 1%;
+        }
     </style>
+    <script>
+        var touched_rows = [];
+        $(document).ready(function() {
+            //item adder
+            $("table:first td").on("click", function() {
+                var test = $(this).text();
+                if (!touched_rows.includes(test)) {
+                    touched_rows.push($(this).text());
+                    $(this).css("background-color", "#6d757d");
+                    $(this).css("color", "white");
+                    console.log($(this).text())
+                } else {
+                    $(this).css("background-color", "transparent");
+                    $(this).css("color", "black");
+                    var index = touched_rows.indexOf(test);
+                    touched_rows.splice(index, 1);
+                    console.log(touched_rows);
+                }
+            });
+
+            //use this when submitting/deleting the list of items
+            $("#add").on("click", function() {
+                console.log(touched_rows);
+                touched_rows = [];
+                console.log("touched_rows is cleared")
+            });
+
+        });
+    </script>
 </head>
 
 <body style="background-color: rgb(255, 100, 100);">
@@ -96,8 +164,14 @@
         <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
 
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-danger button-glow mr-1">Delete Room</button>
-            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
+            <button type="button" name="" id="" class="btn btn-danger  mr-1">Delete Room</button>
+            <button type="button" name="" id="" class="btn btn-light  ml-1" style="color:red;">Next State</button>
+
+            <div class="hover-text">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <span class="tooltip-text" id="right">Pairs are made when state is changed.</span>
+            </div>
+
         </div>
         <div class="d-flex flex-row justify-content-center m-auto my-5" style="width: 100%;">
             <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
@@ -197,34 +271,5 @@
         </div>
     </div>
 </body>
-<script>
-    var touched_rows = [];
-    $(document).ready(function() {
-        //item adder
-        $("table:first td").on("click", function() {
-            var test = $(this).text();
-            if (!touched_rows.includes(test)) {
-                touched_rows.push($(this).text());
-                $(this).css("background-color", "#6d757d");
-                $(this).css("color", "white");
-                console.log($(this).text())
-            } else {
-                $(this).css("background-color", "transparent");
-                $(this).css("color", "black");
-                var index = touched_rows.indexOf(test);
-                touched_rows.splice(index, 1);
-                console.log(touched_rows);
-            }
-        });
-
-        //use this when submitting/deleting the list of items
-        $("#add").on("click", function() {
-            console.log(touched_rows);
-            touched_rows = [];
-            console.log("touched_rows is cleared")
-        });
-
-    });
-</script>
 
 </html>
