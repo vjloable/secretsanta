@@ -41,7 +41,7 @@ include "scripts\session_control.inc";
             echo $_SESSION['name'];
             ?>!
         </h1>
-        <h5 class="text-center pt-1" style="font-weight:900">Signed in as:
+        <h5 class="text-center pt-1">Signed in as:
             <?php
             echo $_SESSION['email'];
             ?>
@@ -99,7 +99,5 @@ include "scripts\session_control.inc";
             <div class="col p-2"></div>
         </div>
     </div>
-
 </body>
-
 </html>
