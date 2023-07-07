@@ -164,15 +164,15 @@
         <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
 
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-danger  mr-1">Delete Room</button>
-            <button type="button" name="" id="" class="btn btn-light  ml-1" style="color:red;">Next State</button>
+            <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
+            <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
 
             <div class="hover-text">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
                 <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
             </div>
-
         </div>
+
         <div class="d-flex flex-row justify-content-center m-auto my-5" style="width: 100%;">
             <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
                 <div class="table-wrapper-scroll-y" style="background-color: white; margin: 2% 7% 0% 7%;">
