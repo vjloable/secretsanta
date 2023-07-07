@@ -23,6 +23,7 @@
             position: sticky;
             top: 0;
             background-color: #fff;
+            /* Set the background color for the sticky header */
             z-index: 1;
         }
 
@@ -69,7 +70,6 @@
             <!-- <i class=" fa-solid fa-bars" style="color: white;" aria-hidden="true"></i> -->
         </div>
     </nav>
-
     <div class="container-fluid" style="height: 93vh;">
         <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="background-color: transparent;">
             <ol class="breadcrumb">
