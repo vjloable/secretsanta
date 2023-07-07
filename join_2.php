@@ -1,6 +1,8 @@
+<?php
+include "scripts\session_control.inc";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,9 +74,16 @@
                 <li class="breadcrumb-item" style="color: #505050;">REVELATION STATE</li>
             </ol>
         </nav>
-
-        <h4 class="text-center text-light" style="font-weight:900;">Room Code: 5431</h4>
-        <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
+        <h4 class="text-center text-light" style="font-weight:900;">Room Code:
+        <?php
+        echo " " . $_SESSION["room"];
+        ?>
+        </h4>
+        <h5 class="text-center text-light" style="font-weight:900;">Hostname:
+        <?php
+        echo " " . $_SESSION["host"];
+        ?>
+        </h5>
         <div class="text-center mt-3">
             <h1 class="text-light" style="font-weight:900;">Your Recipient is:</h1>
             <h2 class="text-light" style="font-weight:900;">Malik 😱</h2>
@@ -112,5 +121,4 @@
         </div>
     </div>
 </body>
-
 </html>
