@@ -60,7 +60,7 @@
             visibility: hidden;
             position: absolute;
             z-index: 2;
-            width: 150px;
+            width: 200px;
             color: white;
             font-size: 12px;
             background-color: #192733;
@@ -169,7 +169,7 @@
 
             <div class="hover-text">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
-                <span class="tooltip-text" id="right">Pairs are made when state is changed.</span>
+                <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
             </div>
 
         </div>
