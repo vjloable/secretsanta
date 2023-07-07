@@ -1,6 +1,8 @@
+<?php
+include "scripts\session_control.inc";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,14 +60,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="dropdown">
-                <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Account Settings</a>
-                    <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
-                    <a class="dropdown-item" href="#" style="color: red;">Logout</a>
-                </div>
+				<form action="post">
+					<button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-bars"></i>
+					</button>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Account Settings</a>
+						<div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
+						<button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
+					</div>
+				</form>
             </div>
 
             <!-- <i class=" fa-solid fa-bars" style="color: white;" aria-hidden="true"></i> -->
@@ -81,8 +85,16 @@
                 </ol>
             </nav>
 
-            <h4 class="text-center text-light" style="font-weight:900;">Room Code: 5431</h4>
-            <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
+            <h4 class="text-center text-light" style="font-weight:900;">Room Code:
+			<?php
+			echo " " . $_SESSION["room"];
+			?>
+			</h4>
+            <h5 class="text-center text-light" style="font-weight:900;">Hostname:
+			<?php
+			echo " " . $_SESSION["host"];
+			?>
+			</h5>
             <div class="row " style="width: 100%; ">
                 <div class="col mb-5">
                     <div class="container" style="width: 100%; height: 100%;">
@@ -129,21 +141,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <div class="table-wrapper">
-                                        <tr>
-                                            <td>Vince</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Elizer</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Malik</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Kobe</td>
-                                        </tr>
-
+                                        <?php
+										include ".\scripts\get_members.php";
+                                        while ($member = $members->fetchArray(SQLITE3_ASSOC)) {
+                                            echo "<tr><td>".$member['name']."</td></tr>";
+                                        }
+                                        $db->close();
+										?>
                                     </div>
                                 </tbody>
                             </table>
@@ -154,5 +159,4 @@
         </div>
     </div>
 </body>
-
 </html>
