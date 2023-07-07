@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['email'] = $email;
         $_SESSION['name'] = $extracted['name'];
+        $_SESSION['login'] = "VERIFIED";
         header("Location: /secretsanta/lobby.php");
         exit();
     } else {
