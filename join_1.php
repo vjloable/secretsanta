@@ -1,6 +1,8 @@
+<?php
+include "scripts\session_control.inc";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,16 +72,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="dropdown">
-                <form action="post">
-                    <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account Settings</a>
-                        <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
-                        <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
-                    </div>
-                </form>
+					<form action="post">
+						<button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-bars"></i>
+						</button>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Account Settings</a>
+							<div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
+							<button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
+						</div>
+					</form>
             </div>
         </div>
     </nav>
@@ -91,107 +93,75 @@
                 <li class="breadcrumb-item" style="color: #505050;">REVELATION STATE</li>
             </ol>
         </nav>
-
-        <h4 class="text-center text-light" style="font-weight:900;">Room Code: 5431</h4>
-        <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
-
-        <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-danger button-glow mr-1">Delete Room</button>
-            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
-        </div>
-        <div class="d-flex flex-row justify-content-center m-auto my-5" style="width: 100%;">
-            <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
-                <div class="table-wrapper-scroll-y" style="background-color: white; margin: 2% 7% 0% 7%;">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <!-- id="add" is trivial -->
-                                <th id="add" scope="col">Wishlist 🎉</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Basketball</td>
-                            </tr>
-                            <tr>
-                                <td>NBA 2K23</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="this_div" class="d-flex justify-content-center mt-3" style="width: 100%;">
-                    <form class="d-flex" onsubmit="addRow(event)">
-                        <div class="d-flex align-items-center">
-                            <input type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item" required>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 3%;">
-                <div class="table-wrapper-scroll-y" style="background-color: white; margin-right: 20%; margin-left: 20%; margin-top: 5%; ">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Members List 👀</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <div class="table-wrapper">
-                                <?php
-                                include ".\scripts\get_members.php";
-                                while ($member = $members->fetchArray(SQLITE3_ASSOC)) {
-                                    echo "<tr><td>" . $member['name'] . "</td></tr>";
-                                }
-                                $db->close();
-                                ?>
+				<h4 class="text-center text-light" style="font-weight:900;">Room Code:
+					<?php
+					echo " " . $_SESSION["room"];
+					?>
+				</h4>
+				<h5 class="text-center text-light" style="font-weight:900;">Hostname:
+					<?php
+					echo " " . $_SESSION["host"];
+					?>
+				</h5>
+            <div class="row " style="width: 100%; ">
+                <div class="col mb-5">
+                    <div class="container" style="width: 100%; height: 100%;">
+                        <div style="width: 100%;">
+                            <div class="table-wrapper-scroll-y h-100" style="background-color: white; margin-right: 20%; margin-left: 20%;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Wishlist 🎉</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Basketball</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NBA 2K23</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overwatch 2 Batle Pass</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </tbody>
-                    </table>
+                            <div id="this_div" class="d-flex justify-content-center mt-3" style="width: 100%;">
+                                <form class="d-flex" onsubmit="addRow(event)">
+                                    <div class="d-flex">
+                                        <label for="item" style="font-weight:900; color: white; font-size: 24px;">Item: </label>
+                                        <input type="text" class="additem" id="item" name="item" style="background-color: rgb(255, 100, 100);" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-outline-light ml-2" style="width: 40%; font-weight: 900; font-size: 15px;" formaction="">ADD</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col ">
+                    <div class="container" style="width: 100%; ">
+                        <div class="table-wrapper-scroll-y" style="background-color: white; margin-right: 20%; margin-left: 20%;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Members List 👀</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <div class="table-wrapper">
+                                        <?php
+										                    include ".\scripts\get_members.php";
+                                        while ($member = $members->fetchArray(SQLITE3_ASSOC)) {
+                                            echo "<tr><td>".$member['name']."</td></tr>";
+                                        }
+                                        $db->close();
+										                    ?>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -226,5 +196,4 @@
 
     });
 </script>
-
 </html>
