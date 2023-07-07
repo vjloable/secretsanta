@@ -22,12 +22,14 @@ EOF;
 
 $ret = $db->query($sql_are_you_a_host);
 if ($data = $ret->fetchArray(SQLITE3_ASSOC)) {
-    $_SESSION['hosting_room'] = $data["room_code"];
+    $_SESSION['room'] = $data["room_code"];
+    $_SESSION['host'] = $name;
     header("Location: /secretsanta/join_1.php");
     exit();
 }
 
-$room_code = rand(0, 9999);
+$code = rand(0, 9999);
+$room_code = str_pad($code, 4, "0", STR_PAD_LEFT);
 
 $sql_room_code_exists = <<<EOF
 SELECT * FROM room WHERE room_code="$room_code";
@@ -36,25 +38,27 @@ EOF;
 do {
     $ret = $db->query($sql_room_code_exists);
     if ($ret->fetchArray(SQLITE3_ASSOC)) {
-        $room_code = rand(0, 9999);
+        $code = rand(0, 9999);
+        $room_code = str_pad($code, 4, "0", STR_PAD_LEFT);
     } else {
-        break;
+        break;  
     }
 } while ($ret->fetchArray(SQLITE3_ASSOC));
 
 $sql_host_a_room = <<<EOF
-INSERT INTO room(room_code, host_id) VALUES($room_code, $user_id);
+INSERT INTO room(room_code, host_id) VALUES("$room_code", $user_id);
 EOF;
 
 $sql_join_a_room = <<<EOF
-INSERT INTO belongs_in(user_id, room_code) VALUES($user_id, $room_code);
+INSERT INTO belongs_in(user_id, room_code) VALUES($user_id, "$room_code");
 EOF;
 
 $db->exec($sql_host_a_room);
 $db->exec($sql_join_a_room);
 $db->close();
 
-$_SESSION['hosting_room'] = $room_code;
+$_SESSION['room'] = $room_code;
+$_SESSION['host'] = $name;
 header("Location: /secretsanta/join_1.php");
 exit();
 ?>
