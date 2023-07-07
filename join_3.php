@@ -72,8 +72,7 @@
         <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
 
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-danger button-glow mr-1">Delete Room</button>
-            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
+            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">End Room</button>
         </div>
         <div class="row d-flex align-items-center my-5">
             <div class="col d-flex align-items-center justify-content-end" style="height: 70%;">
