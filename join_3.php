@@ -67,7 +67,7 @@
         <div class="row d-flex align-items-center " style="height: 60%;">
             <div class="col d-flex align-items-center justify-content-end" style="height: 70%;">
                 <div class="text-center text-dark border bg-white border-white p-5 glow" style="margin-right: 5%;">
-                    <h1 style="font-weight: 900;">Your Recipient is:</h1>
+                    <h1 style="font-weight: 900;">You are the santa of:</h1>
                     <h2 style="font-weight: 900;">Malik</h2>
                 </div>
             </div>

@@ -9,7 +9,7 @@
     	</style>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
+		<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
 			<div class="container-fluid">
 				<a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
