@@ -156,12 +156,17 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
-            <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
-
-            <div class="hover-text" style="position: relative; left: 1px;">
-                <i class="fa fa-question-circle" aria-hidden="true"></i>
-                <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
+            <div>
+                <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
+                <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
+            </div>
+            <div style="position: relative;">
+                <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
+                    <div class="hover-text" style="position: relative; left: 1px; ">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-row justify-content-center m-auto my-5 " style="width: 100%;">
