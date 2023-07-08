@@ -3,6 +3,7 @@ include "scripts\session_control.inc";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +37,52 @@ include "scripts\session_control.inc";
             box-shadow: 0 0 5px #484747;
             border-radius: 5%;
         }
+
+        .tooltip-text {
+            visibility: hidden;
+            position: absolute;
+            z-index: 2;
+            width: 200px;
+            color: white;
+            font-size: 12px;
+            background-color: #192733;
+            border-radius: 10px;
+            padding: 10px 15px 10px 15px;
+        }
+
+        .tooltip-text::before {
+            content: "";
+            position: absolute;
+            transform: rotate(45deg);
+            background-color: #192733;
+            padding: 5px;
+            z-index: 1;
+        }
+
+        .hover-text:hover .tooltip-text {
+            visibility: visible;
+        }
+
+        #right {
+            top: -8px;
+            left: 120%;
+        }
+
+        #right::before {
+            top: 28%;
+            left: -2%;
+        }
+
+        .hover-text {
+            position: relative;
+            display: inline-block;
+            font-family: Arial;
+            text-align: center;
+            margin-left: 1%;
+        }
     </style>
 </head>
+
 <body style="background-color: rgb(255, 100, 100);">
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
@@ -58,24 +103,35 @@ include "scripts\session_control.inc";
         </div>
     </nav>
     <div class="container-fluid" style="height: 93vh; ">
-        <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="background-color: transparent;">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item " style="color: #505050;">OPEN STATE</li>
-                <li class="breadcrumb-item" style="color: #505050;">LOCKED-IN STATE</li>
-                <li class="breadcrumb-item active" style="color: white;">REVELATION STATE</li>
-            </ol>
-        </nav>
+        <div class="container-fluid d-flex justify-content-between">
+            <div style="position: relative;">
+                <div class="d-flex " style="position: absolute;top: 0;left: 0;">
+                    <a class="hover-text btn btn-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/lobby.php">
+                        <i class="fa fa-arrow-left " aria-hidden="true" style="color: white; cursor: pointer;"></i>
+                        <span class="tooltip-text" style="width: 100px;" id="right">Back to Lobby</span>
+                    </a>
+                </div>
+            </div>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="background-color: transparent;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item " style="color: #505050;">OPEN STATE</li>
+                    <li class="breadcrumb-item" style="color: #505050;">LOCKED-IN STATE</li>
+                    <li class="breadcrumb-item active" style="color: white;">REVELATION STATE</li>
+                </ol>
+            </nav>
+            <div>
+            </div>
+        </div>
         <h4 class="text-center text-light" style="font-weight:900;">Room Code:
-        <?php
-        echo " " . $_SESSION["room"];
-        ?>
+            <?php
+            echo " " . $_SESSION["room"];
+            ?>
         </h4>
         <h5 class="text-center text-light" style="font-weight:900;">Hostname:
-        <?php
-        echo " " . $_SESSION["host"];
-        ?>
+            <?php
+            echo " " . $_SESSION["host"];
+            ?>
         </h5>
-        <div class="row d-flex align-items-center " style="height: 60%;">
         <div class="d-grid gap-2 text-center">
             <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">End Room</button>
         </div>
@@ -83,7 +139,7 @@ include "scripts\session_control.inc";
             <div class="col d-flex align-items-center justify-content-end" style="height: 70%;">
                 <div class="text-center text-dark border bg-white border-white p-5 glow" style="margin-right: 5%; position: sticky;">
                     <h3 style="font-weight: 900;">You are the <br> santa of:</h3>
-                    <h4 style="font-weight: 900;">Malik</h4>
+                    <h4 style="font-weight: 900;">Elizer</h4>
                 </div>
             </div>
             <div class="col d-flex align-items-center" style="height: 70%;">
@@ -100,4 +156,5 @@ include "scripts\session_control.inc";
         </div>
     </div>
 </body>
+
 </html>
