@@ -3,18 +3,14 @@ include "scripts\session_control.inc";
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Site</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
@@ -107,38 +103,48 @@ include "scripts\session_control.inc";
         }
     </style>
 </head>
+
 <body style="background-color: rgb(255, 100, 100);">
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
-                aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="dropdown">
                 <form action="post">
-                    <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Account Settings</a>
                         <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
-                        <button class="dropdown-item" style="color: red;"
-                            formaction=".\scripts\logout_action.php">Logout</button>
+                        <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
                     </div>
                 </form>
             </div>
         </div>
     </nav>
     <div class="container-fluid" style="height: 93vh; ">
-        <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="background-color: transparent;">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" style="color: white;">OPEN STATE </li>
-                <li class="breadcrumb-item " style="color: #505050;">LOCKED-IN STATE </li>
-                <li class="breadcrumb-item" style="color: #505050;">REVELATION STATE</li>
-            </ol>
-        </nav>
+        <div class="container-fluid d-flex justify-content-between">
+            <div style="position: relative;">
+                <div class="d-flex " style="position: absolute;top: 0;left: 0;">
+                    <a class="hover-text btn btn-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/lobby.php">
+                        <i class="fa fa-arrow-left " aria-hidden="true" style="color: white; cursor: pointer;"></i>
+                        <span class="tooltip-text" style="width: 100px;" id="right">Back to Lobby</span>
+                    </a>
+                </div>
+            </div>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="background-color: transparent;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" style="color: white;">OPEN STATE </li>
+                    <li class="breadcrumb-item " style="color: #505050;">LOCKED-IN STATE </li>
+                    <li class="breadcrumb-item" style="color: #505050;">REVELATION STATE</li>
+                </ol>
+            </nav>
+            <div>
+            </div>
+        </div>
         <h4 class="text-center text-light" style="font-weight:900;">Room Code:
             <?php
             echo " " . $_SESSION["room"];
@@ -149,18 +155,17 @@ include "scripts\session_control.inc";
             echo " " . $_SESSION["host"];
             ?>
         </h5>
-        <div class="d-grid gap-2 text-center">
+        <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
             <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
 
-            <div class="hover-text">
+            <div class="hover-text" style="position: relative; left: 1px;">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
                 <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
             </div>
         </div>
         <div class="d-flex flex-row justify-content-center m-auto my-5 " style="width: 100%;">
-            <div class="glow "
-                style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
+            <div class="glow " style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
                 <div class="table-wrapper-scroll-y" style="background-color: white; margin: 2% 7% 0% 7%;">
                     <table class="table table-hover">
                         <thead>
@@ -220,24 +225,19 @@ include "scripts\session_control.inc";
                 <div id="this_div" class="d-flex justify-content-center mt-3" style="width: 100%;">
                     <form class="d-flex" onsubmit="addRow(event)">
                         <div class="d-flex align-items-center">
-                            <input type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item"
-                                name="item" required>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2"
-                                style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <input type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item" required>
+                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2"
-                                style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="glow"
-                style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 3%;">
-                <div class="table-wrapper-scroll-y"
-                    style="background-color: white; margin-right: 20%; margin-left: 20%; margin-top: 5%; ">
+            <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 3%;">
+                <div class="table-wrapper-scroll-y" style="background-color: white; margin-right: 20%; margin-left: 20%; margin-top: 5%; ">
                     <table class="table">
                         <thead>
                             <tr>
@@ -263,9 +263,9 @@ include "scripts\session_control.inc";
 </body>
 <script>
     var touched_rows = [];
-    $(document).ready(function () {
+    $(document).ready(function() {
         //item adder
-        $("table:first td").on("click", function () {
+        $("table:first td").on("click", function() {
             var test = $(this).text();
             if (!touched_rows.includes(test)) {
                 touched_rows.push($(this).text());
@@ -281,7 +281,7 @@ include "scripts\session_control.inc";
             }
         });
 
-        $("#add").on("click", function () {
+        $("#add").on("click", function() {
             console.log(touched_rows);
             touched_rows = [];
             console.log("touched_rows is cleared")
@@ -289,4 +289,5 @@ include "scripts\session_control.inc";
 
     });
 </script>
+
 </html>
