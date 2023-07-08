@@ -163,7 +163,7 @@ include "scripts\session_control.inc";
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Wishlist 🎉</th>
+                                    <th scope="col">Their Wishlist 🎉</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
