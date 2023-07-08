@@ -20,16 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $b = $_POST['roomcode_b'];
     $c = $_POST['roomcode_c'];
     $d = $_POST['roomcode_d'];
-    $room_code = intval($a.$b.$c.$d);
-// 
-    echo $room_code;
-// 
+    $room_code = $a.$b.$c.$d;
+
+    // echo $room_code;
+
     $sql_room_exists = <<<EOF
     SELECT * FROM room 
-    WHERE room_code = $room_code;
+    WHERE room_code = "$room_code";
     EOF;
 
     if (!$data = ($db->query($sql_room_exists))->fetchArray(SQLITE3_ASSOC)) {
+        var_dump($data);
         $db->close();
         $error_msg = "Entered an invalid room code.";
         header("Location: /secretsanta/lobby.php" . "/?error_msg=" . $error_msg);
