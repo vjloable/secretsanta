@@ -151,7 +151,7 @@ include "scripts\session_control.inc";
         </div>
         <div style="display: flex; justify-content: center;">
             <button type="button" class="btn btn-outline-light" style="border: 0px; text-decoration: underline;">
-                Back to Lobby
+                Exit to Lobby
             </button>
         </div>
     </div>
