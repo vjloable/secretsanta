@@ -1,6 +1,8 @@
+<?php
+include "scripts\session_control.inc";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +49,6 @@
         }
     </style>
 </head>
-
 <body style="background-color: rgb(255, 100, 100);">
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
@@ -78,21 +79,25 @@
                 <li class="breadcrumb-item" style="color: #505050;">REVELATION STATE</li>
             </ol>
         </nav>
-
-        <h4 class="text-center text-light" style="font-weight:900;">Room Code: 5431</h4>
-        <h5 class="text-center text-light" style="font-weight:900;">Hostname: Kobe</h5>
-
+        <h4 class="text-center text-light" style="font-weight:900;">Room Code:
+        <?php
+        echo " " . $_SESSION["room"];
+        ?>
+        </h4>
+        <h5 class="text-center text-light" style="font-weight:900;">Hostname:
+        <?php
+        echo " " . $_SESSION["host"];
+        ?>
+        </h5>
         <div class="d-grid gap-2 text-center">
             <button type="button" name="" id="" class="btn btn-danger button-glow mr-1">Delete Room</button>
             <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
         </div>
-
         <div class="text-center mt-3">
             <h1 class="text-light" style="font-weight:900;">You are the santa of:</h1>
             <h2 class="text-light" style="font-weight:900;">Malik 😱</h2>
             <br>
         </div>
-
         <div style="height: 1px;background-color: white; width: 35%; margin: 0 20% 10px 32.5%;"></div>
         <div>
             <div class="container" style="width: 100%;">
@@ -106,7 +111,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <div class="table-wrapper">
                                     <tr>
                                         <td>Gaming Laptop</td>
@@ -117,7 +121,6 @@
                                     <tr>
                                         <td>Absent Leave</td>
                                     </tr>
-
                                 </div>
                             </tbody>
                         </table>
@@ -127,5 +130,4 @@
         </div>
     </div>
 </body>
-
 </html>
