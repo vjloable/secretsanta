@@ -12,12 +12,30 @@ include "scripts\session_control.inc";
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
     <style>
+        .table-wrapper-scroll-y {
+            max-height: 75%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .table-wrapper-scroll-y table {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .table-wrapper-scroll-y thead th {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1;
+        }
+
         .glow {
             box-shadow: 0 0 20px #484747;
         }
 
         .form-control {
-            width: 40px !important;
+            width: 10% !important;
         }
 
         .card-header {
@@ -99,6 +117,10 @@ include "scripts\session_control.inc";
                 bottom: 3px;
             }
 
+            .collapse {
+                margin-bottom: 150px !important;
+            }
+
             /* .collapse,
             .collapsing {
                 margin: auto;
@@ -125,8 +147,17 @@ include "scripts\session_control.inc";
                 align-items: center;
             }
 
+            .m-2 {
+                margin-top: 5%;
+                margin-bottom: 5%;
+            }
+
             .form-of1 {
                 padding: 0 0 0 0 !important;
+            }
+
+            .small-div {
+                height: 472.29px;
             }
         }
 
@@ -141,6 +172,10 @@ include "scripts\session_control.inc";
 
             .collapse {
                 margin-top: 10%;
+            }
+
+            .small-div {
+                height: 40%;
             }
         }
 
@@ -164,7 +199,7 @@ include "scripts\session_control.inc";
                         Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
                         <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
                         <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
                     </div>
@@ -184,9 +219,9 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <br>
-        <div class="d-flex small-div" style="height:40%; margin-right: 0px; margin-left: 0px;">
+        <div class="d-flex small-div" style="margin-right: 0px; margin-left: 0px;">
             <div class="col p-2 fillin-div"></div>
-            <div class="col btn-divs text-right h-100 text-center mb-5" style="padding: 0 0 0 0 !important;">
+            <div class="col btn-divs m-2 text-right h-100 text-center mb-5" style="padding: 0 0 0 0 !important;">
                 <div class="row align-items-center small-height" style="width: 100%;">
                     <form action="post" class="form-of1" style="margin-right: 20px;">
                         <button class="btn btn-choose btn-outline-light h-100 glow text-center " role="button" type="button" data-toggle="collapse" data-target="#enterRoomCode">Join
@@ -196,7 +231,7 @@ include "scripts\session_control.inc";
                     </form>
                     <div class="collapse" id="enterRoomCode" style="width: 253.75px; position: static; top: 5%; margin: auto; padding: 0 0 0 0 !important;">
                         <br>
-                        <div class="card bg-transparent border-light mb-5" style="width: 100%;">
+                        <div class="card bg-transparent border-light" style="width: 100%;">
                             <div class="card-header bg-danger border-transparent" style="font-weight: 900; font-size: 15px;">
                                 ENTER 4-DIGIT ROOM CODE
                             </div>
@@ -222,12 +257,52 @@ include "scripts\session_control.inc";
                                 </form>
                             </div>
                         </div>
+                        <div class="glow mb-5 mt-3" style="width: 252.150px; height: 200px; background-color: white; margin:auto; padding-top: 1px;">
+                            <div class="table-wrapper-scroll-y" style="background-color: white; margin: 5% 5% 0 5%;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Rooms Joined 💦</th>
+                                            <th scope="col">State 🚦</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <div class="table-wrapper">
+                                            <tr>
+                                                <td>0605</td>
+                                                <td class="text-success">OPEN</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6942</td>
+                                                <td class="text-warning">LOCKED-IN</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4269</td>
+                                                <td class="text-primary">REVELATION</td>
+                                            </tr>
+                                            <tr>
+                                                <td>0605</td>
+                                                <td class="text-success">OPEN</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6942</td>
+                                                <td class="text-warning">LOCKED-IN</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4269</td>
+                                                <td class="text-primary">REVELATION</td>
+                                            </tr>
+                                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
             <div class="m-2 "></div>
-            <div class="col btn-divs btn-divs-2 text-left h-100 text-center" style="padding: 0 0 0 0 !important;">
+            <div class="col btn-divs m-2 btn-divs-2 text-left h-100 text-center" style="padding: 0 0 0 0 !important;">
                 <form action="post">
                     <button class="btn btn-choose btn-outline-light h-100 glow " type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
                         <br>
