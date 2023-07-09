@@ -15,6 +15,19 @@ include "scripts\session_control.inc";
             box-shadow: 0 0 20px #484747;
         }
 
+        .form-control {
+            width: 40px !important;
+        }
+
+        .card-header {
+            font-size: 15px !important;
+        }
+
+        .btn-choose {
+            width: 253.75px !important;
+            height: 146.7px !important;
+        }
+
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -26,16 +39,56 @@ include "scripts\session_control.inc";
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        .navbar {
+            height: 7vh;
+        }
+
+        @media only screen and (max-width: 595px) {
+            .navbar-brand {
+                position: relative;
+                bottom: 5%;
+            }
+
+            .container-small-cm {
+                position: relative;
+                bottom: 3px;
+            }
+
+            .padding-destroyer {
+                padding: 0 0 0 0 !important;
+            }
+
+            .collapse {
+                margin: auto;
+            }
+
+            .fillin-div {
+                display: none;
+            }
+
+            .col {
+                margin: 0 0 0 0 !important;
+            }
+
+            .small-div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media only screen and (max-height:395px) {
+            .navbar {
+                height: 40px;
+            }
+        }
     </style>
 </head>
 
 <body style="height: 100%; background-color: rgb(255, 100, 100); color: white; font-weight: 900;">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-danger w-100" style="height: 50.5px;">
+        <div class="container-fluid container-small-cm">
             <a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="dropdown">
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,17 +115,17 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <br>
-        <div class="d-flex" style="height:40%; margin-right: 0px; margin-left: 0px;">
-            <div class="col p-2"></div>
-            <div class="col p-2 text-right h-100 text-center" style="margin-right: 2%">
+        <div class="d-flex small-div" style="height:40%; margin-right: 0px; margin-left: 0px;">
+            <div class="col p-2 fillin-div"></div>
+            <div class="col p-2 text-right h-100 text-center">
                 <div class="row align-items-center">
-                    <form action="post">
-                        <button class="btn btn-outline-light h-100 glow text-center " style="padding: 10% 50px; font-size: 40px; font-weight:900;" role="button" type="button" data-toggle="collapse" data-target="#enterRoomCode">Join
+                    <form action="post" class="padding-destroyer">
+                        <button class="btn btn-choose btn-outline-light h-100 glow text-center " style="padding: 10% 50px; font-size: 40px; font-weight:900;" role="button" type="button" data-toggle="collapse" data-target="#enterRoomCode">Join
                             <br>
                             <div style="font-size: 11px;">Friends in a room already? </div>
                         </button>
                     </form>
-                    <div class="collapse" id="enterRoomCode">
+                    <div class="collapse" id="enterRoomCode" style="width: 367.05px;">
                         <br>
                         <div class="card bg-transparent border-light mx-5">
                             <div class="card-header bg-danger border-transparent" style="font-weight: 900; font-size: 1vw;">
@@ -82,16 +135,16 @@ include "scripts\session_control.inc";
                                 <form method="post">
                                     <div class="row align-items-center justify-content-around">
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_a" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_a">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_b" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_b">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_c" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_c">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_d" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_d">
                                         </div>
                                         <div class="col-3">
                                             <input type="submit" class="btn btn-danger text-white" value="OK" style="font-weight: 900;" role="button" formaction="/secretsanta/scripts/join_action.php">
@@ -103,15 +156,15 @@ include "scripts\session_control.inc";
                     </div>
                 </div>
             </div>
-            <div class="col p-2 text-left h-100 text-center " style="margin-left: 2%">
+            <div class="col p-2 text-left h-100 text-center">
                 <form action="post">
-                    <button class="btn btn-outline-light h-100 glow " style="padding: 10% 50px; font-size: 40px; font-weight:900;" type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
+                    <button class="btn btn-choose btn-outline-light h-100 glow " style="padding: 10% 50px; font-size: 40px; font-weight:900;" type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
                         <br>
                         <div style="font-size: 11px;">Looking to host a party? 👀 </div>
                     </button>
                 </form>
             </div>
-            <div class="col p-2"></div>
+            <div class="col p-2 fillin-div"></div>
         </div>
     </div>
 </body>
