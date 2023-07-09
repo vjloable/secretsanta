@@ -3,16 +3,18 @@ include "scripts\session_control.inc";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Lobby🔥</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
     <style>
         .glow {
             box-shadow: 0 0 20px #484747;
         }
-        
+
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -26,6 +28,7 @@ include "scripts\session_control.inc";
         }
     </style>
 </head>
+
 <body style="height: 100%; background-color: rgb(255, 100, 100); color: white; font-weight: 900;">
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
@@ -33,6 +36,18 @@ include "scripts\session_control.inc";
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="dropdown">
+                <form action="post">
+                    <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
+                        <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </nav>
     <div style="height:93vh;">
@@ -79,7 +94,7 @@ include "scripts\session_control.inc";
                                             <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_d" style="width: 40px;">
                                         </div>
                                         <div class="col-3">
-                                            <input type="submit" class="btn btn-danger text-white" value="OK" style="font-weight: 900;"  role="button" formaction="/secretsanta/scripts/join_action.php">
+                                            <input type="submit" class="btn btn-danger text-white" value="OK" style="font-weight: 900;" role="button" formaction="/secretsanta/scripts/join_action.php">
                                         </div>
                                     </div>
                                 </form>
@@ -100,4 +115,5 @@ include "scripts\session_control.inc";
         </div>
     </div>
 </body>
+
 </html>
