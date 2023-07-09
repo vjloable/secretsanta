@@ -108,9 +108,6 @@ include "scripts\session_control.inc";
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="dropdown">
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -272,7 +269,7 @@ include "scripts\session_control.inc";
         //item adder
         $("table:first td").on("click", function() {
             var test = $(this).text();
-            if (!touched_rows.includes(test)) {
+            if ($(this).css("background-color") != "rgb(109, 117, 125)") {
                 touched_rows.push($(this).text());
                 $(this).css("background-color", "#6d757d");
                 $(this).css("color", "white");

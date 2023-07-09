@@ -98,21 +98,18 @@ include "scripts\session_control.inc";
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="dropdown">
-                <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Account Settings</a>
-                    <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
-                    <a class="dropdown-item" href="#" style="color: red;">Logout</a>
-                </div>
+                <form action="post">
+                    <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
+                        <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
+                    </div>
+                </form>
             </div>
-
-            <!-- <i class=" fa-solid fa-bars" style="color: white;" aria-hidden="true"></i> -->
         </div>
     </nav>
 
