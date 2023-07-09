@@ -37,9 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // var_dump($room_code);
-    // var_dump($user_id);
-
     $sql_joined_the_room = <<<EOF
     SELECT user_id, room.room_code, host_id, name, email FROM belongs_in 
     JOIN room
@@ -60,8 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    var_dump($data);
-    // exit();
     $sql_join_a_room = <<<EOF
     INSERT INTO belongs_in(user_id, room_code) VALUES($user_id, "$room_code");
     EOF;
@@ -76,13 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     EOF;
 
     $host = ($db->query($sql_get_host))->fetchArray(SQLITE3_ASSOC);
-    var_dump($host);
+
     $_SESSION['room'] = $room_code;
     $_SESSION['host'] = $host['name'];
     $_SESSION['host_id'] = $host['host_id'];
     $db->close();
-    // echo $_SESSION['host_id'];
-    // header("Location: /secretsanta/join_1.php");
+
+    header("Location: /secretsanta/join_1.php");
     exit();
 }
 ?>
