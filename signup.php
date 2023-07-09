@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style="height: 100%;">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
   <title>Signup Form 📝</title>
@@ -11,16 +12,35 @@
     .glow {
       box-shadow: 0 0 20px #484747;
     }
+
+    .navbar {
+      height: 7vh;
+    }
+
+    @media only screen and (max-width: 575px) {
+      .navbar-brand {
+        position: relative;
+        bottom: 5%;
+      }
+
+      .container-small-cm {
+        position: relative;
+        bottom: 3px;
+      }
+    }
+
+    @media only screen and (max-height:395px) {
+      .navbar {
+        height: 40px;
+      }
+    }
   </style>
 </head>
 
 <body style="height: 100%; background-color: rgb(255, 100, 100);">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 7vh">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 50.5px;">
+    <div class="container-fluid container-small-cm">
       <a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
   </nav>
   <div style="height: 93vh;">
