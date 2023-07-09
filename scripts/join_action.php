@@ -38,39 +38,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $sql_joined_the_room = <<<EOF
-    SELECT * FROM belongs_in 
+    SELECT user_id, room.room_code, host_id, name, email FROM belongs_in 
     JOIN room
     ON belongs_in.room_code = room.room_code
     JOIN user
     ON user.id = room.host_id
-    WHERE user_id = $user_id AND belongs_in.room_code = $room_code;
+    WHERE user_id = $user_id AND belongs_in.room_code = "$room_code";
     EOF;
 
-    if ($data = ($db->query($sql_joined_the_room))->fetchArray(SQLITE3_ASSOC)) {
+    $data = ($db->query($sql_joined_the_room))->fetchArray(SQLITE3_ASSOC);
+
+    if ($data) {
         $_SESSION['room'] = $room_code;
         $_SESSION['host'] = $data['name'];
+        $_SESSION['host_id'] = $data['host_id'];
         $db->close();
         header("Location: /secretsanta/join_1.php");
         exit();
     }
 
     $sql_join_a_room = <<<EOF
-    INSERT INTO belongs_in(user_id, room_code) VALUES($user_id, $room_code);
+    INSERT INTO belongs_in(user_id, room_code) VALUES($user_id, "$room_code");
     EOF;
 
     $db->exec($sql_join_a_room);
 
     $sql_get_host = <<<EOF
-    SELECT name FROM user 
+    SELECT * FROM user 
     JOIN room
     ON user.id = room.host_id
-    WHERE room.room_code = $room_code;
+    WHERE room.room_code = "$room_code";
     EOF;
 
     $host = ($db->query($sql_get_host))->fetchArray(SQLITE3_ASSOC);
+
     $_SESSION['room'] = $room_code;
     $_SESSION['host'] = $host['name'];
+    $_SESSION['host_id'] = $host['host_id'];
     $db->close();
+
     header("Location: /secretsanta/join_1.php");
     exit();
 }
