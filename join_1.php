@@ -112,6 +112,7 @@ include "scripts\session_control.inc";
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
+                        Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Account Settings</a>
@@ -232,16 +233,18 @@ include "scripts\session_control.inc";
 </body>
 <script>
     var touched_rows = [];
-    $(document).ready(function () {
+    $(document).ready(function() {
         function loadWishes() {
             $.ajax({
                 url: "./scripts/get_wishlist.php",
                 type: "POST",
-                data: {load: "load"},
+                data: {
+                    load: "load"
+                },
                 success: function(response) {
                     $("#wishlistData").html(response);
-                    
-                    $("table:first tr").on("click", function () {
+
+                    $("table:first tr").on("click", function() {
                         var wish = $(this).text().split(':');
                         console.log(wish[0].trim());
                         if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
@@ -266,13 +269,15 @@ include "scripts\session_control.inc";
                         $.ajax({
                             url: "./scripts/get_wishlist.php",
                             type: "POST",
-                            data: {inputWish: inputWish},
+                            data: {
+                                inputWish: inputWish
+                            },
                             success: function(response) {
                                 touched_rows = [];
                                 $("#inputWish").val('');
                                 $("#wishlistData").html(response);
 
-                                $("table:first tr").on("click", function () {
+                                $("table:first tr").on("click", function() {
                                     var wish = $(this).text().split(':');
                                     console.log(wish[0].trim());
                                     if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
@@ -299,12 +304,14 @@ include "scripts\session_control.inc";
                         $.ajax({
                             url: "./scripts/get_wishlist.php",
                             type: "POST",
-                            data: {deleteWishes: touched_rows},
+                            data: {
+                                deleteWishes: touched_rows
+                            },
                             success: function(response) {
                                 touched_rows = [];
                                 $("#wishlistData").html(response);
-                                
-                                $("table:first tr").on("click", function () {
+
+                                $("table:first tr").on("click", function() {
                                     var wish = $(this).text().split(':');
                                     console.log(wish[0].trim());
                                     if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
