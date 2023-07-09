@@ -109,6 +109,7 @@ include "scripts\session_control.inc";
             <div class="dropdown">
                 <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bars"></i>
+                    Vince
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">Account Settings</a>
@@ -119,6 +120,9 @@ include "scripts\session_control.inc";
         </div>
     </nav>
     <div class="container-fluid" style="height: 93vh;">
+        <button class="btn btn-outline-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/welcome.php">
+            <i class="fa fa-arrow-left fa-2x p-3" aria-hidden="true" style="color: white; cursor: pointer;"></i>
+        </button>
         <div class="container" style="min-height: 70%;display: flex;align-items: center;">
             <div class="card mx-auto glow" style="width:70%;max-width: 600px; padding: 20px;">
                 <div class="row">
@@ -130,7 +134,19 @@ include "scripts\session_control.inc";
                                 </div>
                             </span>
                         </div>
-                        <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Signup Form</h2>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Profile</h2>
+                            </div>
+                            <div style="position: relative;">
+                                <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
+                                    <div class="hover-text" style="position: relative; left: 1px; ">
+                                        <i style="margin-left: 5%;cursor: pointer;" class="fa fa-trash-o" aria-hidden="true"></i>
+                                        <span class="tooltip-text" id="right">DELETING makes your account hard to recover</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <p class="text-danger text-center">
@@ -142,25 +158,14 @@ include "scripts\session_control.inc";
                         </p>
                         <form method="post">
                             <div class="form-group">
-                                <!-- <div class="d-flex justify-content-between">
-                                    <div>
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-envelope-o fa-fw pr-2"></i>
-                                        </span>
-                                        <label for="email" style="font-weight: 900; color: #484747;">Email:</label>
-                                    </div>
-                                    <div>
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </div>
-                                </div> -->
 
                                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw pr-2"></i></span><label for="email" style="font-weight: 900; color: #484747;">Email:</label>
                                 <i id="email_edit" class="fa fa-edit gray" style="cursor: pointer;" aria-hidden="true"></i>
-                                <input type="email" class="form-control" id="email" name="email" value="clutchmamba24@gmail.com" required>
+                                <input type="email" class="form-control" id="email" name="email" value="vince@gmail.com" required>
                                 <br>
                                 <span class="input-group-addon"> <i class="fa fa-user pr-1" aria-hidden="true"></i></span><label for="name" style="font-weight: 900; color: #484747;"> Name:</label>
                                 <i id="name_edit" class="fa fa-edit gray" aria-hidden="true"></i>
-                                <input type="text" class="form-control" id="name" name="name" value="Kobe" required>
+                                <input type="text" class="form-control" id="name" name="name" value="Vince" required>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-success btn-block" formaction="/secretsanta/scripts/signup_action.php">Confirm</button>
@@ -169,13 +174,6 @@ include "scripts\session_control.inc";
                 </div>
             </div>
         </div>
-        <!-- <div class="d-flex justify-content-center" style="text-align: center;">
-            <span class="dot " style="font-size: 15vw; position:relative;">
-                <div class="m-auto h-100 " style="position:absolute; left:22%; bottom:10%; font-weight:900;">
-                    V
-                </div>
-            </span>
-        </div> -->
     </div>
 
     <script>
