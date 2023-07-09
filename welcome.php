@@ -24,13 +24,31 @@
 			height: 7vh;
 		}
 
-		@media only screen and ((max-width: 1031px)and (min-width:389px)) {
+		@media only screen and (max-width: 575px) {
+			.navbar-brand {
+				position: relative;
+				bottom: 5%;
+			}
+
+			.container-small-cm {
+				position: relative;
+				bottom: 3px;
+			}
+
+			.lead {
+				padding: 0 10% 0 10%;
+				font-size: 1em !important;
+			}
+		}
+
+		@media only screen and ((max-width: 1032px)and (min-width:389px)) {
 			.jumbotron-heading {
 				font-size: 65px;
 			}
 
 			.lead {
 				padding: 0 10% 0 10%;
+				font-size: 1em !important;
 			}
 
 			.btn-custom-small {
@@ -55,9 +73,15 @@
 
 		}
 
-		@media only screen and (max-height:395px) {
+		@media only screen and (max-height:500px) {
 			.navbar {
 				height: 40px;
+			}
+
+			.small-flex-fill-a {
+				position: static;
+				margin-top: 100px;
+				padding-top: 100px;
 			}
 		}
 
@@ -68,15 +92,12 @@
 </head>
 
 <body style="background-color: rgb(255, 100, 100);">
-	<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
-		<div class="container-fluid">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-danger" style="height: 50.5px;">
+		<div class="container-fluid container-small-cm">
 			<a class="navbar-brand" style="font-weight: 900;" href="#">🤫SecretSanta</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID" aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
 		</div>
 	</nav>
-	<div class="d-flex" style="height: 93vh; background-color: rgb(255, 100, 100);">
+	<div class="d-flex height-small" style="height: 93vh; background-color: rgb(255, 100, 100); ">
 		<div class="p-2 flex-fill small-flex-fill"></div>
 		<div class="p-2 col-3 flex-fill small-flex-fill-a align-self-center mb-5" style="width: 33%">
 			<div class="mb-4">
