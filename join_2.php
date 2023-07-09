@@ -12,6 +12,7 @@ include "scripts\session_control.inc";
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         .table-wrapper-scroll-y {
             max-height: 200px;
@@ -144,12 +145,26 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-danger button-glow mr-1">Delete Room</button>
-            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
+        <?php
+        if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
+            echo '
+            <button id="endRoom" type="button" name="endRoom" class="btn btn-danger button-glow mr-1" role="button">End Room</button>
+            <button id="nextButton" type="button" class="btn btn-light  button-glow ml-1" style="color:red;" role="button">Next State</button>
+            ';
+            }
+        ?>
         </div>
         <div class="text-center mt-3">
-            <h1 class="text-light" style="font-weight:900;">You are the santa of:</h1>
-            <h2 class="text-light" style="font-weight:900;">Elizer 😱</h2>
+            <h3 class="text-light" style="font-weight:600;">You are the</h3>
+            <h2 class="text-light" style="font-weight:900;">Secret Santa of:</h2>
+            <h1 class="text-light" style="font-weight:900;">
+                <?php
+                include ".\scripts\get_recipient.php";
+                $recipient = getRecipient($_SESSION['user_id'], $_SESSION['room']);
+                $_SESSION['draw_id'] = $recipient['draw_id'];
+                echo $recipient['name'];
+                ?>
+            </h2>
             <br>
         </div>
         <div style="height: 1px;background-color: white; width: 35%; margin: 0 20% 10px 32.5%;"></div>
@@ -166,15 +181,9 @@ include "scripts\session_control.inc";
                             </thead>
                             <tbody>
                                 <div class="table-wrapper">
-                                    <tr>
-                                        <td>Gaming Laptop</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Crocs</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Absent Leave</td>
-                                    </tr>
+                                    <?php
+                                    echo getRecipientWishlist($_SESSION['user_id'], $_SESSION['room']);
+                                    ?>
                                 </div>
                             </tbody>
                         </table>
@@ -184,5 +193,27 @@ include "scripts\session_control.inc";
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function () {
+        $("#endRoom").click(function() {
+            $.ajax({
+                url: "./scripts/end_room_action.php",
+                type: "POST",
+                success: function(response) {
+                    window.location.href = "/secretsanta/lobby.php";
+                }
+            });
+        });
 
+        $("#nextButton").click(function() {
+            $.ajax({
+                url: "./scripts/join_reveal_action.php",
+                type: "POST",
+                success: function(response) {
+                    window.location.href = "/secretsanta/join_3.php";
+                }
+            });
+        });
+    });
+</script>
 </html>
