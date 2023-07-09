@@ -94,7 +94,7 @@ include "scripts\session_control.inc";
                         Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
                         <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
                         <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
                     </div>
@@ -133,7 +133,7 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="" class="btn btn-light button-glow ml-1" style="color:red;">End Room</button>
+            <button type="button" name="" id="end_room" class="btn btn-light button-glow ml-1" style="color:red;">End Room</button>
         </div>
         <div class="row d-flex align-items-center my-5">
             <div class="col d-flex align-items-center justify-content-end" style="height: 70%;">
@@ -149,12 +149,24 @@ include "scripts\session_control.inc";
                 </div>
             </div>
         </div>
-        <div style="display: flex; justify-content: center;">
+        <!-- <div style="display: flex; justify-content: center;">
             <button type="button" class="btn btn-outline-light" style="border: 0px; text-decoration: underline;">
                 Exit to Lobby?
             </button>
-        </div>
+        </div> -->
     </div>
 </body>
+<script>
+    var touched_rows = [];
+
+
+    var end_room = document.getElementById("end_room");
+
+    end_room.addEventListener("click", function(event) {
+        if (!confirm("Have Y'ALL received your gifts? If so, please do continue.")) {
+            event.preventDefault();
+        }
+    });
+</script>
 
 </html>
