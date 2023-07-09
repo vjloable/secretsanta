@@ -152,74 +152,41 @@ include "scripts\session_control.inc";
             echo " " . $_SESSION["host"];
             ?>
         </h5>
-        <div class="d-flex justify-content-center">
-            <div>
-                <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
-                <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
-            </div>
-            <div style="position: relative;">
-                <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
-                    <div class="hover-text" style="position: relative; left: 1px; ">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
-                        <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+        if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
+            echo '<div class="d-flex justify-content-center">
+                      <div>
+                          <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
+                          <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
+                      </div>
+                      <div style="position: relative;">
+                          <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
+                              <div class="hover-text" style="position: relative; left: 1px; ">
+                                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                  <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>';
+        }
+        ?>
         <div class="d-flex flex-row justify-content-center m-auto my-5 " style="width: 100%;">
             <div class="glow " style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 1%;">
                 <div class="table-wrapper-scroll-y" style="background-color: white; margin: 2% 7% 0% 7%;">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th id="add" scope="col">Wishlist 🎉</th>
+                                <th id="selectItem" scope="col">Wishlist 🎉</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="wishlistData">
                             <tr>
-                                <td>Basketball</td>
+                                <td>Loading data...</td>
+                                <td hidden>(test)</td>
                             </tr>
                             <tr>
-                                <td>NBA 2K23</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
-                            </tr>
-                            <tr>
-                                <td>Overwatch 2 Batle Pass</td>
+                                <td>Loading data...</td>
+                                <td hidden>(test)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -227,11 +194,11 @@ include "scripts\session_control.inc";
                 <div id="this_div" class="d-flex justify-content-center mt-3" style="width: 100%;">
                     <form class="d-flex" onsubmit="addRow(event)">
                         <div class="d-flex align-items-center">
-                            <input type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item" required>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <input id="inputWish" type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item" required>
+                            <button id="add" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
-                            <button type="submit" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <button id="delete" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -265,30 +232,68 @@ include "scripts\session_control.inc";
 </body>
 <script>
     var touched_rows = [];
-    $(document).ready(function() {
-        //item adder
-        $("table:first td").on("click", function() {
-            var test = $(this).text();
-            if ($(this).css("background-color") != "rgb(109, 117, 125)") {
-                touched_rows.push($(this).text());
-                $(this).css("background-color", "#6d757d");
-                $(this).css("color", "white");
-                console.log($(this).text())
-            } else {
-                $(this).css("background-color", "transparent");
-                $(this).css("color", "black");
-                var index = touched_rows.indexOf(test);
-                touched_rows.splice(index, 1);
-                console.log(touched_rows);
-            }
-        });
+    $(document).ready(function () {
+        function loadWishes() {
+            $.ajax({
+                url: "./scripts/get_wishlist.php",
+                type: "POST",
+                data: {load: "load"},
+                success: function(response) {
+                    $("#wishlistData").html(response);
+                    
+                    $
+                    $("table:first tr").on("click", function () {
+                        var wish = $(this).text().split(':');
+                        console.log(wish[0].trim());
+                        if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
+                            if (!touched_rows.includes(wish[1])) {
+                                touched_rows.push(wish[1]);
+                                $(this).css("background-color", "#6d757d");
+                                $(this).css("color", "white");
+                                // console.log($(this).text())
+                                console.log(touched_rows);
+                            } else {
+                                $(this).css("background-color", "transparent");
+                                $(this).css("color", "black");
+                                var index = touched_rows.indexOf(wish[1]);
+                                touched_rows.splice(index, 1);
+                                console.log(touched_rows);
+                            }
+                        }
+                    });
 
-        $("#add").on("click", function() {
-            console.log(touched_rows);
-            touched_rows = [];
-            console.log("touched_rows is cleared")
-        });
+                    // $("#selectItem").on("click", function () {
+                    //     touched_rows = [];
+                    //     console.log(touched_rows);
+                    // });
 
+                    $("#add").click(function() {
+                        var inputWish = $("#inputWish").val();
+                        $.ajax({
+                            url: "./scripts/get_wishlist.php",
+                            type: "POST",
+                            data: {inputWish: inputWish},
+                            success: function(response) {
+                                loadWishes();
+                            }
+                        });
+                    });
+
+                    $("#delete").click(function() {
+                        $.ajax({
+                            url: "./scripts/get_wishlist.php",
+                            type: "POST",
+                            data: {deleteWishes: touched_rows},
+                            success: function(response) {
+                                $("#wishlistData").html(response);
+                                // loadTable();
+                            }
+                        });
+                    });
+                }
+            });
+        }
+        loadWishes();
     });
 </script>
 

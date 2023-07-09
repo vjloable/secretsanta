@@ -24,6 +24,7 @@ $ret = $db->query($sql_are_you_a_host);
 if ($data = $ret->fetchArray(SQLITE3_ASSOC)) {
     $_SESSION['room'] = $data["room_code"];
     $_SESSION['host'] = $name;
+    $_SESSION['host_id'] = $data['host_id'];
     header("Location: /secretsanta/join_1.php");
     exit();
 }
@@ -59,6 +60,7 @@ $db->close();
 
 $_SESSION['room'] = $room_code;
 $_SESSION['host'] = $name;
+$_SESSION['host_id'] = $user_id;
 header("Location: /secretsanta/join_1.php");
 exit();
 ?>
