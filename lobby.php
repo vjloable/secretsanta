@@ -82,16 +82,16 @@ include "scripts\session_control.inc";
                                 <form method="post">
                                     <div class="row align-items-center justify-content-around">
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_a" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" name="roomcode_a" style="width: 40px;">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_b" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" name="roomcode_b" style="width: 40px;">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_c" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" name="roomcode_c" style="width: 40px;">
                                         </div>
                                         <div class="col-2">
-                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" id="text" name="roomcode_d" style="width: 40px;">
+                                            <input type="text" class="form-control" min="0" max="9" maxlength="1" pattern="[0-9]{1}" name="roomcode_d" style="width: 40px;">
                                         </div>
                                         <div class="col-3">
                                             <input type="submit" class="btn btn-danger text-white" value="OK" style="font-weight: 900;" role="button" formaction="/secretsanta/scripts/join_action.php">
