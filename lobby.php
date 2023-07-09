@@ -2,7 +2,8 @@
 include "scripts\session_control.inc";
 ?>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
     <title>Lobby🔥</title>
@@ -24,8 +25,15 @@ include "scripts\session_control.inc";
         }
 
         .btn-choose {
-            width: 253.75px !important;
-            height: 146.7px !important;
+            width: 253.75px;
+            height: 146.7px t;
+            padding: 10% 50px;
+            font-size: 40px;
+            font-weight: 900;
+        }
+
+        .btn-divs {
+            width: 367.05px;
         }
 
         input::-webkit-outer-spin-button,
@@ -44,10 +52,46 @@ include "scripts\session_control.inc";
             height: 7vh;
         }
 
+        @media only screen and (max-width: 367.05px) {
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h5 {
+                font-size: 14px;
+            }
+
+            form,
+            .form-of1 {
+                width: 100%;
+                height: 100% !important;
+                margin: auto;
+            }
+
+            .btn-divs {
+                width: 80%;
+                margin: auto;
+            }
+
+            .btn-choose {
+                width: 80%;
+                height: 146.7px !important;
+                padding: 0 !important;
+                font-size: 1em;
+                margin: auto;
+            }
+        }
+
         @media only screen and (max-width: 595px) {
             .navbar-brand {
                 position: relative;
                 bottom: 5%;
+            }
+
+            .row {
+                margin-right: 0 !important;
+                margin-left: 0 !important;
             }
 
             .container-small-cm {
@@ -55,13 +99,10 @@ include "scripts\session_control.inc";
                 bottom: 3px;
             }
 
-            .padding-destroyer {
-                padding: 0 0 0 0 !important;
-            }
-
-            .collapse {
+            /* .collapse,
+            .collapsing {
                 margin: auto;
-            }
+            } */
 
             .fillin-div {
                 display: none;
@@ -71,12 +112,39 @@ include "scripts\session_control.inc";
                 margin: 0 0 0 0 !important;
             }
 
+            .mb-5 {
+                margin-bottom: 40px !important;
+            }
+
+            .btn-divs-2 {
+                padding-top: 50px;
+            }
+
             .small-div {
                 flex-direction: column;
                 align-items: center;
             }
+
+            .form-of1 {
+                padding: 0 0 0 0 !important;
+            }
         }
 
+        @media only screen and (min-width: 595px) {
+            .btn-choose {
+                width: 253.75px !important;
+                height: 146.7px !important;
+                padding: 10% 50px;
+                font-size: 40px;
+                font-weight: 900;
+            }
+
+            .collapse {
+                margin-top: 10%;
+            }
+        }
+
+        /*navbar*/
         @media only screen and (max-height:395px) {
             .navbar {
                 height: 40px;
@@ -93,6 +161,7 @@ include "scripts\session_control.inc";
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
+                        Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Account Settings</a>
@@ -117,18 +186,18 @@ include "scripts\session_control.inc";
         <br>
         <div class="d-flex small-div" style="height:40%; margin-right: 0px; margin-left: 0px;">
             <div class="col p-2 fillin-div"></div>
-            <div class="col p-2 text-right h-100 text-center">
-                <div class="row align-items-center">
-                    <form action="post" class="padding-destroyer">
-                        <button class="btn btn-choose btn-outline-light h-100 glow text-center " style="padding: 10% 50px; font-size: 40px; font-weight:900;" role="button" type="button" data-toggle="collapse" data-target="#enterRoomCode">Join
+            <div class="col btn-divs text-right h-100 text-center mb-5" style="padding: 0 0 0 0 !important;">
+                <div class="row align-items-center small-height" style="width: 100%;">
+                    <form action="post" class="form-of1" style="margin-right: 20px;">
+                        <button class="btn btn-choose btn-outline-light h-100 glow text-center " role="button" type="button" data-toggle="collapse" data-target="#enterRoomCode">Join
                             <br>
                             <div style="font-size: 11px;">Friends in a room already? </div>
                         </button>
                     </form>
-                    <div class="collapse" id="enterRoomCode" style="width: 367.05px;">
+                    <div class="collapse" id="enterRoomCode" style="width: 253.75px; position: static; top: 5%; margin: auto; padding: 0 0 0 0 !important;">
                         <br>
-                        <div class="card bg-transparent border-light mx-5">
-                            <div class="card-header bg-danger border-transparent" style="font-weight: 900; font-size: 1vw;">
+                        <div class="card bg-transparent border-light mb-5" style="width: 100%;">
+                            <div class="card-header bg-danger border-transparent" style="font-weight: 900; font-size: 15px;">
                                 ENTER 4-DIGIT ROOM CODE
                             </div>
                             <div class="card-body">
@@ -155,10 +224,12 @@ include "scripts\session_control.inc";
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="col p-2 text-left h-100 text-center">
+            <div class="m-2 "></div>
+            <div class="col btn-divs btn-divs-2 text-left h-100 text-center" style="padding: 0 0 0 0 !important;">
                 <form action="post">
-                    <button class="btn btn-choose btn-outline-light h-100 glow " style="padding: 10% 50px; font-size: 40px; font-weight:900;" type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
+                    <button class="btn btn-choose btn-outline-light h-100 glow " type="submit" role="button" formaction="/secretsanta/scripts/host_action.php">Host
                         <br>
                         <div style="font-size: 11px;">Looking to host a party? 👀 </div>
                     </button>
