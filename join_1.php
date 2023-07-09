@@ -154,20 +154,22 @@ include "scripts\session_control.inc";
         </h5>
         <?php
         if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
-            echo '<div class="d-flex justify-content-center">
-                      <div>
-                          <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
-                          <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
-                      </div>
-                      <div style="position: relative;">
-                          <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
-                              <div class="hover-text" style="position: relative; left: 1px; ">
-                                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                                  <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>';
+            echo '
+            <div class="d-flex justify-content-center">
+                <div>
+                    <button id="endRoom" type="button" name="endRoom" class="btn btn-danger button-glow mr-1" role="button">End Room</button>
+                    <button id="nextButton" type="button" class="btn btn-light  button-glow ml-1" style="color:red;" role="button">Next State</button>
+                </div>
+                <div style="position: relative;">
+                    <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
+                        <div class="hover-text" style="position: relative; left: 1px; ">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            <span class="tooltip-text" id="right">Pairs are AUTOMATICALLY made when state is changed.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ';
         }
         ?>
         <div class="d-flex flex-row justify-content-center m-auto my-5 " style="width: 100%;">
@@ -180,14 +182,11 @@ include "scripts\session_control.inc";
                             </tr>
                         </thead>
                         <tbody id="wishlistData">
-                            <tr>
-                                <td>Loading data...</td>
-                                <td hidden>(test)</td>
-                            </tr>
-                            <tr>
-                                <td>Loading data...</td>
-                                <td hidden>(test)</td>
-                            </tr>
+                            <tr><td>&nbsp</td><td hidden></td></tr>
+                            <tr><td>&nbsp</td><td hidden></td></tr>
+                            <tr><td>&nbsp</td><td hidden></td></tr>
+                            <tr><td>&nbsp</td><td hidden></td></tr>
+                            <tr><td>&nbsp</td><td hidden></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -240,96 +239,81 @@ include "scripts\session_control.inc";
                 data: {load: "load"},
                 success: function(response) {
                     $("#wishlistData").html(response);
-                    
                     $("table:first tr").on("click", function () {
                         var wish = $(this).text().split(':');
-                        console.log(wish[0].trim());
                         if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
                             if (!touched_rows.includes(wish[1])) {
                                 touched_rows.push(wish[1]);
                                 $(this).css("background-color", "#6d757d");
                                 $(this).css("color", "white");
-                                // console.log($(this).text())
-                                console.log(touched_rows);
                             } else {
                                 $(this).css("background-color", "transparent");
                                 $(this).css("color", "black");
                                 var index = touched_rows.indexOf(wish[1]);
                                 touched_rows.splice(index, 1);
-                                console.log(touched_rows);
                             }
                         }
-                    });
-
-                    $("#add").click(function() {
-                        var inputWish = $("#inputWish").val();
-                        $.ajax({
-                            url: "./scripts/get_wishlist.php",
-                            type: "POST",
-                            data: {inputWish: inputWish},
-                            success: function(response) {
-                                touched_rows = [];
-                                $("#inputWish").val('');
-                                $("#wishlistData").html(response);
-
-                                $("table:first tr").on("click", function () {
-                                    var wish = $(this).text().split(':');
-                                    console.log(wish[0].trim());
-                                    if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
-                                        if (!touched_rows.includes(wish[1])) {
-                                            touched_rows.push(wish[1]);
-                                            $(this).css("background-color", "#6d757d");
-                                            $(this).css("color", "white");
-                                            // console.log($(this).text())
-                                            console.log(touched_rows);
-                                        } else {
-                                            $(this).css("background-color", "transparent");
-                                            $(this).css("color", "black");
-                                            var index = touched_rows.indexOf(wish[1]);
-                                            touched_rows.splice(index, 1);
-                                            console.log(touched_rows);
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    });
-
-                    $("#delete").click(function() {
-                        $.ajax({
-                            url: "./scripts/get_wishlist.php",
-                            type: "POST",
-                            data: {deleteWishes: touched_rows},
-                            success: function(response) {
-                                touched_rows = [];
-                                $("#wishlistData").html(response);
-                                
-                                $("table:first tr").on("click", function () {
-                                    var wish = $(this).text().split(':');
-                                    console.log(wish[0].trim());
-                                    if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
-                                        if (!touched_rows.includes(wish[1])) {
-                                            touched_rows.push(wish[1]);
-                                            $(this).css("background-color", "#6d757d");
-                                            $(this).css("color", "white");
-                                            // console.log($(this).text())
-                                            console.log(touched_rows);
-                                        } else {
-                                            $(this).css("background-color", "transparent");
-                                            $(this).css("color", "black");
-                                            var index = touched_rows.indexOf(wish[1]);
-                                            touched_rows.splice(index, 1);
-                                            console.log(touched_rows);
-                                        }
-                                    }
-                                });
-                            }
-                        });
                     });
                 }
             });
         }
+        
         loadWishes();
+
+        $("#add").click(function() {
+            var inputWish = $("#inputWish").val();
+            $.ajax({
+                url: "./scripts/get_wishlist.php",
+                type: "POST",
+                data: {inputWish: inputWish},
+                success: function(response) {
+                    touched_rows = [];
+                    $("#inputWish").val('');
+                    $("#wishlistData").html(response);
+                    location.reload(true);
+                }
+            });
+        });
+
+        $("#delete").click(function() {
+            $.ajax({
+                url: "./scripts/get_wishlist.php",
+                type: "POST",
+                data: {deleteWishes: touched_rows},
+                success: function(response) {
+                    touched_rows = [];
+                    $("#wishlistData").html(response);
+                    location.reload(true);
+                }
+            });
+        });
+
+        
+        $("#endRoom").click(function() {
+            $.ajax({
+                url: "./scripts/end_room_action.php",
+                type: "POST",
+                success: function(response) {
+                    window.location.href = "/secretsanta/lobby.php";
+                }
+            });
+        });
+
+        $("#nextButton").click(function() {
+            $.ajax({
+                url: "./scripts/join_draw_action.php",
+                type: "POST",
+                success: function(response) {
+                    console.log(response);
+                    if (response > 0) {      
+                        location.reload(true);
+                    } else {
+                        window.location.href = "/secretsanta/join_2.php";
+                    }
+                }
+            });
+        });
+
     });
 </script>
 
