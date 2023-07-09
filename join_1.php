@@ -238,7 +238,8 @@ include "scripts\session_control.inc";
                 data: {load: "load"},
                 success: function(response) {
                     $("#wishlistData").html(response);
-
+                    
+                    $
                     $("table:first tr").on("click", function () {
                         var wish = $(this).text().split(':');
                         console.log(wish[0].trim());
