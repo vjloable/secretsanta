@@ -192,17 +192,17 @@ include "scripts\session_control.inc";
                     </table>
                 </div>
                 <div id="this_div" class="d-flex justify-content-center mt-3" style="width: 100%;">
-                    <form class="d-flex" onsubmit="addRow(event)">
+                    <div class="d-flex">
                         <div class="d-flex align-items-center">
-                            <input id="inputWish" type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item" required>
-                            <button id="add" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <input id="inputWish" type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item">
+                            <button id="add" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </button>
-                            <button id="delete" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;" formaction="">
+                            <button id="delete" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="glow" style="width: 30vw; height: 380px; background-color: white; margin:auto; padding-top:1%; padding-bottom: 3%;">
@@ -241,7 +241,6 @@ include "scripts\session_control.inc";
                 success: function(response) {
                     $("#wishlistData").html(response);
                     
-                    $
                     $("table:first tr").on("click", function () {
                         var wish = $(this).text().split(':');
                         console.log(wish[0].trim());
@@ -262,11 +261,6 @@ include "scripts\session_control.inc";
                         }
                     });
 
-                    // $("#selectItem").on("click", function () {
-                    //     touched_rows = [];
-                    //     console.log(touched_rows);
-                    // });
-
                     $("#add").click(function() {
                         var inputWish = $("#inputWish").val();
                         $.ajax({
@@ -274,7 +268,29 @@ include "scripts\session_control.inc";
                             type: "POST",
                             data: {inputWish: inputWish},
                             success: function(response) {
-                                loadWishes();
+                                touched_rows = [];
+                                $("#inputWish").val('');
+                                $("#wishlistData").html(response);
+
+                                $("table:first tr").on("click", function () {
+                                    var wish = $(this).text().split(':');
+                                    console.log(wish[0].trim());
+                                    if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
+                                        if (!touched_rows.includes(wish[1])) {
+                                            touched_rows.push(wish[1]);
+                                            $(this).css("background-color", "#6d757d");
+                                            $(this).css("color", "white");
+                                            // console.log($(this).text())
+                                            console.log(touched_rows);
+                                        } else {
+                                            $(this).css("background-color", "transparent");
+                                            $(this).css("color", "black");
+                                            var index = touched_rows.indexOf(wish[1]);
+                                            touched_rows.splice(index, 1);
+                                            console.log(touched_rows);
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
@@ -285,8 +301,28 @@ include "scripts\session_control.inc";
                             type: "POST",
                             data: {deleteWishes: touched_rows},
                             success: function(response) {
+                                touched_rows = [];
                                 $("#wishlistData").html(response);
-                                // loadTable();
+                                
+                                $("table:first tr").on("click", function () {
+                                    var wish = $(this).text().split(':');
+                                    console.log(wish[0].trim());
+                                    if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
+                                        if (!touched_rows.includes(wish[1])) {
+                                            touched_rows.push(wish[1]);
+                                            $(this).css("background-color", "#6d757d");
+                                            $(this).css("color", "white");
+                                            // console.log($(this).text())
+                                            console.log(touched_rows);
+                                        } else {
+                                            $(this).css("background-color", "transparent");
+                                            $(this).css("color", "black");
+                                            var index = touched_rows.indexOf(wish[1]);
+                                            touched_rows.splice(index, 1);
+                                            console.log(touched_rows);
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
