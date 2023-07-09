@@ -35,7 +35,7 @@ include "scripts\session_control.inc";
         }
 
         .form-control {
-            width: 10% !important;
+            width: 40px !important;
         }
 
         .card-header {
@@ -150,6 +150,10 @@ include "scripts\session_control.inc";
             .m-2 {
                 margin-top: 5%;
                 margin-bottom: 5%;
+            }
+
+            .card-body {
+                padding: 10px 0 10px 0 !important;
             }
 
             .form-of1 {
