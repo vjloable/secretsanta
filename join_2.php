@@ -145,7 +145,7 @@ include "scripts\session_control.inc";
             ?>
         </h5>
         <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="delete_room" class="btn btn-danger button-glow mr-1">Delete Room</button>
+            <button type="button" name="" id="delete_room" class="btn btn-danger button-glow mr-1">End Room</button>
             <button type="button" name="" id="next_state" class="btn btn-light button-glow ml-1" style="color:red;">Next State</button>
         </div>
         <div class="text-center mt-3">

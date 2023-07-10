@@ -157,7 +157,7 @@ include "scripts\session_control.inc";
         if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
             echo '<div class="d-flex justify-content-center">
                       <div>
-                          <button type="button" id="delete_room" class="btn btn-danger button-glow mr-1">Delete Room</button>
+                          <button type="button" id="delete_room" class="btn btn-danger button-glow mr-1">End Room</button>
                           <button type="button" id="next_state" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
                       </div>
                       <div style="position: relative;">
