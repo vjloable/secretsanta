@@ -112,9 +112,10 @@ include "scripts\session_control.inc";
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
+                        Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
                         <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
                         <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
                     </div>
@@ -156,8 +157,8 @@ include "scripts\session_control.inc";
         if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
             echo '<div class="d-flex justify-content-center">
                       <div>
-                          <button type="button" class="btn btn-danger button-glow mr-1">Delete Room</button>
-                          <button type="button" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
+                          <button type="button" id="delete_room" class="btn btn-danger button-glow mr-1">Delete Room</button>
+                          <button type="button" id="next_state" class="btn btn-light  button-glow ml-1" style="color:red;">Next State</button>
                       </div>
                       <div style="position: relative;">
                           <div class="d-flex h-100 align-items-center" style="position: absolute; left: 10px;">
@@ -196,10 +197,10 @@ include "scripts\session_control.inc";
                         <div class="d-flex align-items-center">
                             <input id="inputWish" type="text" class="add-item form-control" placeholder="Item (e.g. Hotdog)" id="item" name="item">
                             <button id="add" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <i id="add_item" class="fa fa-plus" aria-hidden="true"></i>
                             </button>
                             <button id="delete" class="btn btn-sm btn-danger text-light ml-2" style="font-weight: 900; font-size: 0.7em;">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                <i id="delete_item" class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
@@ -232,16 +233,42 @@ include "scripts\session_control.inc";
 </body>
 <script>
     var touched_rows = [];
-    $(document).ready(function () {
+
+
+    var delete_room = document.getElementById("delete_room");
+    var next_state = document.getElementById("next_state");
+    var delete_item = document.getElementById("delete");
+
+    delete_room.addEventListener("click", function(event) {
+        if (!confirm("Are you sure you to END the ROOM?")) {
+            event.preventDefault();
+        }
+    });
+
+    next_state.addEventListener("click", function(event) {
+        if (!confirm("Have Y'ALL decided your wishes? If so, please do continue.")) {
+            event.preventDefault();
+        }
+    });
+
+    delete_item.addEventListener("click", function(event) {
+        if (!confirm("Are you sure to REMOVE the items from your wishlist/s?")) {
+            event.preventDefault();
+        }
+    });
+
+    $(document).ready(function() {
         function loadWishes() {
             $.ajax({
                 url: "./scripts/get_wishlist.php",
                 type: "POST",
-                data: {load: "load"},
+                data: {
+                    load: "load"
+                },
                 success: function(response) {
                     $("#wishlistData").html(response);
-                    
-                    $("table:first tr").on("click", function () {
+
+                    $("table:first tr").on("click", function() {
                         var wish = $(this).text().split(':');
                         console.log(wish[0].trim());
                         if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
@@ -266,13 +293,15 @@ include "scripts\session_control.inc";
                         $.ajax({
                             url: "./scripts/get_wishlist.php",
                             type: "POST",
-                            data: {inputWish: inputWish},
+                            data: {
+                                inputWish: inputWish
+                            },
                             success: function(response) {
                                 touched_rows = [];
                                 $("#inputWish").val('');
                                 $("#wishlistData").html(response);
 
-                                $("table:first tr").on("click", function () {
+                                $("table:first tr").on("click", function() {
                                     var wish = $(this).text().split(':');
                                     console.log(wish[0].trim());
                                     if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {
@@ -299,12 +328,14 @@ include "scripts\session_control.inc";
                         $.ajax({
                             url: "./scripts/get_wishlist.php",
                             type: "POST",
-                            data: {deleteWishes: touched_rows},
+                            data: {
+                                deleteWishes: touched_rows
+                            },
                             success: function(response) {
                                 touched_rows = [];
                                 $("#wishlistData").html(response);
-                                
-                                $("table:first tr").on("click", function () {
+
+                                $("table:first tr").on("click", function() {
                                     var wish = $(this).text().split(':');
                                     console.log(wish[0].trim());
                                     if (!(wish[0] === "Loading data...") && !(wish[0].trim() === "") && !(wish[0].trim() === "Wishlist 🎉")) {

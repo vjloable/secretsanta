@@ -109,9 +109,10 @@ include "scripts\session_control.inc";
             <div class="dropdown">
                 <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bars"></i>
+                    Vince
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Account Settings</a>
+                    <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
                     <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
                     <a class="dropdown-item" href="#" style="color: red;">Logout</a>
                 </div>
@@ -119,6 +120,9 @@ include "scripts\session_control.inc";
         </div>
     </nav>
     <div class="container-fluid" style="height: 93vh;">
+        <button class="btn btn-outline-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/welcome.php">
+            <i class="fa fa-arrow-left fa-2x p-3" aria-hidden="true" style="color: white; cursor: pointer;"></i>
+        </button>
         <div class="container" style="min-height: 70%;display: flex;align-items: center;">
             <div class="card mx-auto glow" style="width:70%;max-width: 600px; padding: 20px;">
                 <div class="row">
@@ -130,7 +134,11 @@ include "scripts\session_control.inc";
                                 </div>
                             </span>
                         </div>
-                        <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Signup Form</h2>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <h2 class="card-title text-center" style="font-weight: 900; color: #484747;">Profile</h2>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <p class="text-danger text-center">
@@ -142,40 +150,30 @@ include "scripts\session_control.inc";
                         </p>
                         <form method="post">
                             <div class="form-group">
-                                <!-- <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between">
                                     <div>
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-envelope-o fa-fw pr-2"></i>
-                                        </span>
-                                        <label for="email" style="font-weight: 900; color: #484747;">Email:</label>
+                                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw pr-2"></i></span><label for="email" style="font-weight: 900; color: #484747;">Email:</label>
                                     </div>
-                                    <div>
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </div>
-                                </div> -->
-
-                                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw pr-2"></i></span><label for="email" style="font-weight: 900; color: #484747;">Email:</label>
-                                <i id="email_edit" class="fa fa-edit gray" style="cursor: pointer;" aria-hidden="true"></i>
-                                <input type="email" class="form-control" id="email" name="email" value="clutchmamba24@gmail.com" required>
+                                    <i id="email_edit" class="fa fa-edit gray" style="cursor: pointer;" aria-hidden="true"></i>
+                                </div>
+                                <input type="email" class="form-control" id="email" name="email" value="vince@gmail.com" required>
                                 <br>
-                                <span class="input-group-addon"> <i class="fa fa-user pr-1" aria-hidden="true"></i></span><label for="name" style="font-weight: 900; color: #484747;"> Name:</label>
-                                <i id="name_edit" class="fa fa-edit gray" aria-hidden="true"></i>
-                                <input type="text" class="form-control" id="name" name="name" value="Kobe" required>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <span class="input-group-addon"> <i class="fa fa-user pr-1" aria-hidden="true"></i></span><label for="name" style="font-weight: 900; color: #484747;"> Name:</label>
+                                    </div>
+                                    <i id="name_edit" class="fa fa-edit gray" aria-hidden="true"></i>
+                                </div>
+                                <input type="text" class="form-control" id="name" name="name" value="Vince" required>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success btn-block" formaction="/secretsanta/scripts/signup_action.php">Confirm</button>
+                            <button type="submit" id="confirm_button" class="btn btn-success btn-block" formaction="/secretsanta/scripts/signup_action.php">Confirm</button>
+                            <button type="submit" id="delete_button" class="btn btn-danger btn-block" formaction="/secretsanta/scripts/signup_action.php">Delete</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div class="d-flex justify-content-center" style="text-align: center;">
-            <span class="dot " style="font-size: 15vw; position:relative;">
-                <div class="m-auto h-100 " style="position:absolute; left:22%; bottom:10%; font-weight:900;">
-                    V
-                </div>
-            </span>
-        </div> -->
     </div>
 
     <script>
@@ -185,36 +183,51 @@ include "scripts\session_control.inc";
         var name_edit = document.getElementById("name_edit");
         var name_input = document.getElementById("name");
         name_input.disabled = true;
+        var confirm_button = document.getElementById("confirm_button");
+        confirm_button.disabled = true;
+        var delete_button = document.getElementById("delete_button");
 
         email_edit.addEventListener("click", function() {
-            console.log("triggered");
-            if (email_edit.classList.contains("gray")) {
-                console.log("i on");
-                email_edit.classList.remove("gray");
-                email_edit.classList.add("blue");
-                email_input.disabled = !email_input.disabled;
-            } else if (email_edit.classList.contains("blue")) {
-                console.log("i off");
-                email_edit.classList.remove("blue");
-                email_edit.classList.add("gray");
-                email_input.disabled = !email_input.disabled;
-            }
+            toggleInputActivation(email_input, email_edit);
+            toggleConfirmButtonActivation();
         });
 
         name_edit.addEventListener("click", function() {
-            console.log("triggered");
-            if (name_edit.classList.contains("gray")) {
-                console.log("i on");
-                name_edit.classList.remove("gray");
-                name_edit.classList.add("blue");
-                name_input.disabled = !name_input.disabled;
-            } else if (name_edit.classList.contains("blue")) {
-                console.log("i off");
-                name_edit.classList.remove("blue");
-                name_edit.classList.add("gray");
-                name_input.disabled = !name_input.disabled;
+            toggleInputActivation(name_input, name_edit);
+            toggleConfirmButtonActivation();
+        });
+
+        confirm_button.addEventListener("click", function(event) {
+            if (!confirm("Are you sure you to change your information?")) {
+                event.preventDefault();
             }
         });
+
+        delete_button.addEventListener("click", function(event) {
+            if (!confirm("DELETING your account removes you from all ROOMS and therefore DRAWS. Are you REALLY sure?")) {
+                event.preventDefault();
+            }
+        });
+
+        function toggleInputActivation(input, editIcon) {
+            if (editIcon.classList.contains("gray")) {
+                editIcon.classList.remove("gray");
+                editIcon.classList.add("blue");
+                input.disabled = false;
+            } else if (editIcon.classList.contains("blue")) {
+                editIcon.classList.remove("blue");
+                editIcon.classList.add("gray");
+                input.disabled = true;
+            }
+        }
+
+        function toggleConfirmButtonActivation() {
+            if (!email_input.disabled || !name_input.disabled) {
+                confirm_button.disabled = false;
+            } else {
+                confirm_button.disabled = true;
+            }
+        }
     </script>
 </body>
 
