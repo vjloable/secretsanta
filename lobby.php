@@ -272,30 +272,10 @@ include "scripts\session_control.inc";
                                     </thead>
                                     <tbody>
                                         <div class="table-wrapper">
-                                            <tr>
-                                                <td>0605</td>
-                                                <td class="text-success">OPEN</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6942</td>
-                                                <td class="text-warning">LOCKED-IN</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4269</td>
-                                                <td class="text-primary">REVELATION</td>
-                                            </tr>
-                                            <tr>
-                                                <td>0605</td>
-                                                <td class="text-success">OPEN</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6942</td>
-                                                <td class="text-warning">LOCKED-IN</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4269</td>
-                                                <td class="text-primary">REVELATION</td>
-                                            </tr>
+                                            <?php
+                                            include ".\scripts\get_join_rooms.php";
+                                            // echo $displayRooms;
+                                            ?>                                        
                                         </div>
                                     </tbody>
                                 </table>
