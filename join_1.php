@@ -234,27 +234,27 @@ include "scripts\session_control.inc";
     var touched_rows = [];
 
 
-    var delete_room = document.getElementById("delete_room");
-    var next_state = document.getElementById("next_state");
-    var delete_item = document.getElementById("delete");
+    // var delete_room = document.getElementById("delete_room");
+    // var next_state = document.getElementById("next_state");
+    // var delete_item = document.getElementById("delete");
 
-    delete_room.addEventListener("click", function(event) {
-        if (!confirm("Are you sure you to END the ROOM?")) {
-            event.preventDefault();
-        }
-    });
+    // delete_room.addEventListener("click", function(event) {
+    //     if (!confirm("Are you sure you to END the ROOM?")) {
+    //         event.preventDefault();
+    //     }
+    // });
 
-    next_state.addEventListener("click", function(event) {
-        if (!confirm("Have Y'ALL decided your wishes? If so, please do continue.")) {
-            event.preventDefault();
-        }
-    });
+    // next_state.addEventListener("click", function(event) {
+    //     if (!confirm("Have Y'ALL decided your wishes? If so, please do continue.")) {
+    //         event.preventDefault();
+    //     }
+    // });
 
-    delete_item.addEventListener("click", function(event) {
-        if (!confirm("Are you sure to REMOVE the items from your wishlist/s?")) {
-            event.preventDefault();
-        }
-    });
+    // delete_item.addEventListener("click", function(event) {
+    //     if (!confirm("Are you sure to REMOVE the items from your wishlist/s?")) {
+    //         event.preventDefault();
+    //     }
+    // });
 
     $(document).ready(function() {
         function loadWishes() {
