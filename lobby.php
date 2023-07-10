@@ -1,5 +1,6 @@
 <?php
 include "scripts\session_control.inc";
+unset($_SESSION['room_state']);
 ?>
 <!DOCTYPE html>
 <html style="height: 100%;">

@@ -15,8 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         WHERE room_code = "$room_code";
         EOF;
 
+    // echo $room_code;
     $db->exec($sql_pfk);
     $db->exec($sql_end_room);
+    // exit();
+    unset($_SESSION['room_state']);
     unset($_SESSION['room']);
     unset($_SESSION['host']);
     unset($_SESSION['user_id']);

@@ -26,7 +26,7 @@ function getDraw($draw_id): array
     ON s.recipient_id = x.id
     JOIN user y 
     ON r.santa_id = y.id
-    WHERE s.draw_id = $draw_id;
+    WHERE s.draw_id = $draw_id
     EOF;
 
     $data = ($db->query($sql_get_draw))->fetchArray(SQLITE3_ASSOC);

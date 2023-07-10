@@ -1,5 +1,9 @@
 <?php
 include "scripts\session_control.inc";
+if (!(isset($_SESSION["room_state"]) && $_SESSION["room_state"] == 3)) {
+    header("Location: /secretsanta/scripts/session_join_control.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -139,7 +143,7 @@ include "scripts\session_control.inc";
         if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
             echo '
             <div class="d-grid gap-2 text-center">
-                <button id="endRoom" type="button" name="endRoom" class="btn btn-danger button-glow mr-1" role="button">End Room</button>
+                <button id="endRoom" type="submit" name="endRoom" class="btn btn-danger button-glow mr-1" role="button">End Room</button>
             </div>
             ';
         }
@@ -169,11 +173,11 @@ include "scripts\session_control.inc";
                 </div>
             </div>
         </div>
-        <!-- <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center;">
             <button type="button" class="btn btn-outline-light" style="border: 0px; text-decoration: underline;">
                 Exit to Lobby?
             </button>
-        </div> -->
+        </div>
     </div>
 </body>
 <script>
@@ -183,18 +187,11 @@ include "scripts\session_control.inc";
                 url: "./scripts/end_room_action.php",
                 type: "POST",
                 success: function(response) {
-                    window.location.href = "/secretsanta/lobby.php";
+                    console.log('response');
+                    window.location.href = "/secretsanta/scripts/session_join_control.php";
                 }
             });
         });
     });
-
-//     var end_room = document.getElementById("end_room");
-
-//     end_room.addEventListener("click", function(event) {
-//         if (!confirm("Have Y'ALL received your gifts? If so, please do continue.")) {
-//             event.preventDefault();
-//         }
-//     });
-
+</script>
 </html>

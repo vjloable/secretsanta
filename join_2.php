@@ -1,5 +1,8 @@
 <?php
 include "scripts\session_control.inc";
+if (!(isset($_SESSION["room_state"]) && $_SESSION["room_state"] == 2)) {
+    header("Location: /secretsanta/scripts/session_join_control.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -213,31 +216,32 @@ include "scripts\session_control.inc";
                 url: "./scripts/join_reveal_action.php",
                 type: "POST",
                 success: function(response) {
-                    window.location.href = "/secretsanta/join_3.php";
+                    console.log(response);
+                    window.location.href = "/secretsanta/scripts/session_join_control.php";
                 }
             });
         });
     });
 
-    var delete_room = document.getElementById("delete_room");
-    var next_state = document.getElementById("next_state");
+    // var delete_room = document.getElementById("delete_room");
+    // var next_state = document.getElementById("next_state");
 
-    delete_room.addEventListener("click", function(event) {
-        if (!confirm("Are you sure you to END the ROOM?")) {
-            event.preventDefault();
-        }
-    });
+    // delete_room.addEventListener("click", function(event) {
+    //     if (!confirm("Are you sure you to END the ROOM?")) {
+    //         event.preventDefault();
+    //     }
+    // });
 
-    next_state.addEventListener("click", function(event) {
-        if (!confirm("Have Y'ALL bought your gifts? If so, please do continue.")) {
-            event.preventDefault();
-        }
-    });
+    // next_state.addEventListener("click", function(event) {
+    //     if (!confirm("Have Y'ALL bought your gifts? If so, please do continue.")) {
+    //         event.preventDefault();
+    //     }
+    // });
 
-    delete_item.addEventListener("click", function(event) {
-        if (!confirm("Are you sure to REMOVE the items from your wishlist/s?")) {
-            event.preventDefault();
-        }
-    });
+    // delete_item.addEventListener("click", function(event) {
+    //     if (!confirm("Are you sure to REMOVE the items from your wishlist/s?")) {
+    //         event.preventDefault();
+    //     }
+    // });
 </script>
 </html>

@@ -109,20 +109,23 @@ include "scripts\session_control.inc";
             <div class="dropdown">
                 <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bars"></i>
-                    Vince
+                    <?php
+                    echo $_SESSION['name'];
+                    ?>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
-                    <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
-                    <a class="dropdown-item" href="#" style="color: red;">Logout</a>
+                    <form action="post">
+                        <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
     </nav>
     <div class="container-fluid" style="height: 93vh;">
-        <button class="btn btn-outline-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/welcome.php">
-            <i class="fa fa-arrow-left fa-2x p-3" aria-hidden="true" style="color: white; cursor: pointer;"></i>
-        </button>
+        <a class="btn btn-outline-dark mt-1 ml-1" style="border-color: rgb(255, 100, 100);" href="/secretsanta/lobby.php">
+			<i class="fa fa-arrow-left fa-2x p-3" aria-hidden="true" style="color: white; cursor: pointer;"></i>
+		</a>
         <div class="container" style="min-height: 70%;display: flex;align-items: center;">
             <div class="card mx-auto glow" style="width:70%;max-width: 600px; padding: 20px;">
                 <div class="row">
@@ -130,7 +133,9 @@ include "scripts\session_control.inc";
                         <div class="d-flex justify-content-center" style="text-align: center;">
                             <span class="dot bg-danger" style="font-size: 80px; position:relative;">
                                 <div class="m-auto h-100 text-light" style="font-weight:900; text-align:center;">
-                                    V
+                                    <?php
+                                    echo trim(substr($_SESSION['name'], 0, 1));
+                                    ?>
                                 </div>
                             </span>
                         </div>
@@ -156,7 +161,7 @@ include "scripts\session_control.inc";
                                     </div>
                                     <i id="email_edit" class="fa fa-edit gray" style="cursor: pointer;" aria-hidden="true"></i>
                                 </div>
-                                <input type="email" class="form-control" id="email" name="email" value="vince@gmail.com" required>
+                                <input type="email" class="form-control" id="email" name="email" value=<?php echo $_SESSION['email'];?> required>
                                 <br>
                                 <div class="d-flex justify-content-between">
                                     <div>
@@ -164,11 +169,11 @@ include "scripts\session_control.inc";
                                     </div>
                                     <i id="name_edit" class="fa fa-edit gray" aria-hidden="true"></i>
                                 </div>
-                                <input type="text" class="form-control" id="name" name="name" value="Vince" required>
+                                <input type="text" class="form-control" id="name" name="name" value=<?php echo $_SESSION['name']; ?> required>
                             </div>
                             <br>
-                            <button type="submit" id="confirm_button" class="btn btn-success btn-block" formaction="/secretsanta/scripts/signup_action.php">Confirm</button>
-                            <button type="submit" id="delete_button" class="btn btn-danger btn-block" formaction="/secretsanta/scripts/signup_action.php">Delete</button>
+                            <button type="submit" id="confirm_button" class="btn btn-success btn-block" formaction="./scripts/edit_action.php">Confirm</button>
+                            <button type="submit" id="delete_button" class="btn btn-danger btn-block" formaction="./scripts/delete_action.php">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -177,57 +182,57 @@ include "scripts\session_control.inc";
     </div>
 
     <script>
-        var email_edit = document.getElementById("email_edit");
-        var email_input = document.getElementById("email");
-        email_input.disabled = true;
-        var name_edit = document.getElementById("name_edit");
-        var name_input = document.getElementById("name");
-        name_input.disabled = true;
-        var confirm_button = document.getElementById("confirm_button");
-        confirm_button.disabled = true;
-        var delete_button = document.getElementById("delete_button");
+        // var email_edit = document.getElementById("email_edit");
+        // var email_input = document.getElementById("email");
+        // email_input.disabled = true;
+        // var name_edit = document.getElementById("name_edit");
+        // var name_input = document.getElementById("name");
+        // name_input.disabled = true;
+        // var confirm_button = document.getElementById("confirm_button");
+        // confirm_button.disabled = true;
+        // var delete_button = document.getElementById("delete_button");
 
-        email_edit.addEventListener("click", function() {
-            toggleInputActivation(email_input, email_edit);
-            toggleConfirmButtonActivation();
-        });
+        // email_edit.addEventListener("click", function() {
+        //     toggleInputActivation(email_input, email_edit);
+        //     toggleConfirmButtonActivation();
+        // });
 
-        name_edit.addEventListener("click", function() {
-            toggleInputActivation(name_input, name_edit);
-            toggleConfirmButtonActivation();
-        });
+        // name_edit.addEventListener("click", function() {
+        //     toggleInputActivation(name_input, name_edit);
+        //     toggleConfirmButtonActivation();
+        // });
 
-        confirm_button.addEventListener("click", function(event) {
-            if (!confirm("Are you sure you to change your information?")) {
-                event.preventDefault();
-            }
-        });
+        // confirm_button.addEventListener("click", function(event) {
+        //     if (!confirm("Are you sure you to change your information?")) {
+        //         event.preventDefault();
+        //     }
+        // });
 
-        delete_button.addEventListener("click", function(event) {
-            if (!confirm("DELETING your account removes you from all ROOMS and therefore DRAWS. Are you REALLY sure?")) {
-                event.preventDefault();
-            }
-        });
+        // delete_button.addEventListener("click", function(event) {
+        //     if (!confirm("DELETING your account removes you from all ROOMS and therefore DRAWS. Are you REALLY sure?")) {
+        //         event.preventDefault();
+        //     }
+        // });
 
-        function toggleInputActivation(input, editIcon) {
-            if (editIcon.classList.contains("gray")) {
-                editIcon.classList.remove("gray");
-                editIcon.classList.add("blue");
-                input.disabled = false;
-            } else if (editIcon.classList.contains("blue")) {
-                editIcon.classList.remove("blue");
-                editIcon.classList.add("gray");
-                input.disabled = true;
-            }
-        }
+        // function toggleInputActivation(input, editIcon) {
+        //     if (editIcon.classList.contains("gray")) {
+        //         editIcon.classList.remove("gray");
+        //         editIcon.classList.add("blue");
+        //         input.disabled = false;
+        //     } else if (editIcon.classList.contains("blue")) {
+        //         editIcon.classList.remove("blue");
+        //         editIcon.classList.add("gray");
+        //         input.disabled = true;
+        //     }
+        // }
 
-        function toggleConfirmButtonActivation() {
-            if (!email_input.disabled || !name_input.disabled) {
-                confirm_button.disabled = false;
-            } else {
-                confirm_button.disabled = true;
-            }
-        }
+        // function toggleConfirmButtonActivation() {
+        //     if (!email_input.disabled || !name_input.disabled) {
+        //         confirm_button.disabled = false;
+        //     } else {
+        //         confirm_button.disabled = true;
+        //     }
+        // }
     </script>
 </body>
 

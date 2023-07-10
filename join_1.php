@@ -1,5 +1,8 @@
 <?php
 include "scripts\session_control.inc";
+if (!(isset($_SESSION["room_state"]) && $_SESSION["room_state"] == 1)) {
+    header("Location: /secretsanta/scripts/session_join_control.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -337,7 +340,7 @@ include "scripts\session_control.inc";
                     if (response > 0) {      
                         location.reload(true);
                     } else {
-                        window.location.href = "/secretsanta/join_2.php";
+                        window.location.href = "/secretsanta/scripts/session_join_control.php";
                     }
                 }
             });

@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             EOF;
 
         $db->exec($sql_next_state);
-        
+        $_SESSION["room_state"] = 2;
         // var_dump($db);
         echo $count['COUNT(*)'];
         // exit();
