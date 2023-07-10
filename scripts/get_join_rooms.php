@@ -35,7 +35,7 @@ while ($room = $rooms->fetchArray(SQLITE3_ASSOC)) {
             $displayRooms .= "class=\"text-success\">OPEN</td></tr>";
             break;
         case 2:
-            $displayRooms .= "class=.\"text-warning\">LOCKED-IN</td></tr>";
+            $displayRooms .= "class=\"text-warning\">LOCKED-IN</td></tr>";
             break;
         case 3:
             $displayRooms .= "class=\"text-primary\">REVELATION</td></tr>";
