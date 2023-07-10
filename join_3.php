@@ -92,9 +92,10 @@ include "scripts\session_control.inc";
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
+                        Vince
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account Settings</a>
+                        <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
                         <div class="dropdown-divider" style="background-color: #555; height: 1px; margin: 5px 0;"></div>
                         <button class="dropdown-item" style="color: red;" formaction=".\scripts\logout_action.php">Logout</button>
                     </div>
@@ -185,5 +186,13 @@ include "scripts\session_control.inc";
             });
         });
     });
-</script>
+
+//     var end_room = document.getElementById("end_room");
+
+//     end_room.addEventListener("click", function(event) {
+//         if (!confirm("Have Y'ALL received your gifts? If so, please do continue.")) {
+//             event.preventDefault();
+//         }
+//     });
+
 </html>
