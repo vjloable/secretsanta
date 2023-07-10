@@ -200,7 +200,9 @@ include "scripts\session_control.inc";
                 <form action="post">
                     <button class="btn dropdown-toggle" style="color: white;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bars"></i>
-                        Vince
+                        <?php
+                        echo $_SESSION['name'];
+                        ?>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/secretsanta/account.php">Account Settings</a>
