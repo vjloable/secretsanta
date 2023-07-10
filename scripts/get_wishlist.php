@@ -6,10 +6,13 @@ session_start();
 $user_id = $_SESSION["user_id"];
 $room_code = $_SESSION['room'];
 
-function echoWishlist($user, $database) {
+
+
+function echoWishlist($user, $room_code, $database) {
     $sql_get_user_wishlist = <<<EOF
         SELECT * FROM wishlist
-        WHERE user_id = $user;
+        WHERE user_id = $user
+        AND room_id = "$room_code";
         EOF;
 
     $wishlist = $database->query($sql_get_user_wishlist);
@@ -62,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $db->exec($sql_create_wish);
         
-        echo echoWishlist($user_id, $db);
+        echo echoWishlist($user_id, $room_code, $db);
     } elseif (isset($_POST['deleteWishes'])) {
         $deleteWishes = $_POST['deleteWishes'];
 
@@ -75,9 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $db->exec($sql_delete_wish);
         }
 
-        echo echoWishlist($user_id, $db);
+        echo echoWishlist($user_id, $room_code, $db);
     } elseif (isset($_POST['load'])) {
-        echo echoWishlist($user_id, $db);        
+        if ($_POST['load'] == "load") {
+            echo echoWishlist($user_id, $room_code, $db);
+        }
     }
 }
 ?>

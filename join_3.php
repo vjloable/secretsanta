@@ -12,6 +12,7 @@ include "scripts\session_control.inc";
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/5d09c7d46f.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         .glow {
             box-shadow: 0 0 14px #484747;
@@ -132,20 +133,37 @@ include "scripts\session_control.inc";
             echo " " . $_SESSION["host"];
             ?>
         </h5>
-        <div class="d-grid gap-2 text-center">
-            <button type="button" name="" id="end_room" class="btn btn-light button-glow ml-1" style="color:red;">End Room</button>
-        </div>
+        <?php
+        if ($_SESSION["user_id"] == $_SESSION["host_id"]) {
+            echo '
+            <div class="d-grid gap-2 text-center">
+                <button id="endRoom" type="button" name="endRoom" class="btn btn-danger button-glow mr-1" role="button">End Room</button>
+            </div>
+            ';
+        }
+        ?>
         <div class="row d-flex align-items-center my-5">
             <div class="col d-flex align-items-center justify-content-end" style="height: 70%;">
                 <div class="text-center text-dark border bg-white border-white p-5 glow" style="margin-right: 5%; position: sticky;">
-                    <h3 style="font-weight: 900;">You are the <br> santa of:</h3>
-                    <h4 style="font-weight: 900;">Elizer</h4>
+                    <h5 style="font-weight: 900;">You are the <br> santa of:</h5>
+                    <h2 style="font-weight: 900;">
+                    <?php
+                    include ".\scripts\get_draw.php";
+                    $recipient = getDraw($_SESSION['draw_id']);
+                    echo $recipient[0];
+                    ?>
+                    </h2>
                 </div>
             </div>
             <div class="col d-flex align-items-center" style="height: 70%;">
                 <div class="text-center text-dark border bg-white border-white p-5 glow" style="margin-left: 5%; position: sticky;">
-                    <h3 style="font-weight: 900;">Your Santa <br> is:</h3>
-                    <h4 style="font-weight: 900;">Urmom 😱😱</h4>
+                    <h5 style="font-weight: 900;">Your Santa <br> is:</h5>
+                    <h2 style="font-weight: 900;">
+                    <?php
+                    $recipient = getDraw($_SESSION['draw_id']);
+                    echo $recipient[1];
+                    ?>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -157,16 +175,24 @@ include "scripts\session_control.inc";
     </div>
 </body>
 <script>
-    var touched_rows = [];
-
-
-    var end_room = document.getElementById("end_room");
-
-    end_room.addEventListener("click", function(event) {
-        if (!confirm("Have Y'ALL received your gifts? If so, please do continue.")) {
-            event.preventDefault();
-        }
+    $(document).ready(function () {
+        $("#endRoom").click(function() {
+            $.ajax({
+                url: "./scripts/end_room_action.php",
+                type: "POST",
+                success: function(response) {
+                    window.location.href = "/secretsanta/lobby.php";
+                }
+            });
+        });
     });
-</script>
+
+//     var end_room = document.getElementById("end_room");
+
+//     end_room.addEventListener("click", function(event) {
+//         if (!confirm("Have Y'ALL received your gifts? If so, please do continue.")) {
+//             event.preventDefault();
+//         }
+//     });
 
 </html>
